@@ -1,16 +1,16 @@
-title:              Perivitta Rajendran's Portfolio
+title:              Perivitta Rajendran
 email:              peri_2704@hotmail.my
-description:        Portfolio
+description:        It's my portfolio
 author:             PR-Peri
 baseurl:            ""
 url:                "https://pr-peri.github.io"
 
 # Social Profiles
 twitter_username:    
-github_username:    
+github_username:   PR-Peri 
 facebook_username:   
 instagram_username:  
-linkedin_username:
+linkedin_username: Perivitta Rajendran
 
 # Add your google-analytics ID here to activate google analytics
 google_analytics:   UA-XXXXXXXXX-X # out your google-analytics code
