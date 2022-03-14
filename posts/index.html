@@ -4,6 +4,23 @@ title: Posts
 background: '/img/bg-post.jpg'
 ---
 
+<body>
+
+  <style>
+    body {
+      background-image: url('http://i.stack.imgur.com/kx8MT.gif');
+      background-size: cover;
+      height: 100vh;
+      padding: 0;
+      margin: 0;
+    }
+    
+    footer {
+      color: white;
+    }
+    
+  </style>
+  
 {% for post in paginator.posts %}
 
 <article class="post-preview">
@@ -46,3 +63,4 @@ background: '/img/bg-post.jpg'
 </div>
 
 {% endif %}
+</body>
