@@ -1,8 +1,8 @@
-# [Start Bootstrap - Clean Blog Jekyll](https://startbootstrap.com/themes/clean-blog-jekyll/) - Official Jekyll Version
+# [PR-Peri - Clean Blog Jekyll](https://startbootstrap.com/themes/clean-blog-jekyll/) - Official Jekyll Version
 
-[Clean Blog Jekyll](https://startbootstrap.com/themes/clean-blog-jekyll/) is a stylish, responsive blog theme for [Bootstrap](https://getbootstrap.com/) created by [Start Bootstrap](https://startbootstrap.com/). This theme features a blog homepage, about page, contact page, and an example post page along with a working contact form powered by [Formspree](https://formspree.io/).
+[Clean Blog Jekyll](https://startbootstrap.com/themes/clean-blog-jekyll/) is a stylish, responsive blog theme for [Bootstrap](https://getbootstrap.com/) created by [PR-Peri](https://startbootstrap.com/). This theme features a blog homepage, about page, contact page, and an example post page along with a working contact form powered by [Formspree](https://formspree.io/).
 
-This repository holds the official Jekyll version of the Clean Blog theme on Start Bootstrap!
+This repository holds the official Jekyll version of the Clean Blog theme on PR-Peri!
 
 ## Preview
 
@@ -21,7 +21,8 @@ When installing the theme using RubyGems, demo images, posts, and pages are not 
 3. Install the theme (run the command inside your site directory): `bundle install`
 4. Replace the current theme in your `_config.yml` file with `theme: jekyll-theme-clean-blog`.
 5. Build your site: `bundle exec jekyll serve`
-
+6. Add the following line into gemFile -> gem 'webrick' for gem versions >= 4.0.0
+7. If 5. does not work, try the following command -> bundle install -> 'bundle exec jekyll serve'
 Assuming there are no errors and the site is building properly, follow these steps next:
 
 1. Create the following pages if they do not exist already (or change the extension of existing markdown files from `.md` to `.html`):
@@ -136,19 +137,19 @@ Have a bug or an issue with this template? [Open a new issue](https://github.com
 
 ## About
 
-Start Bootstrap is an open source library of free Bootstrap templates and themes. All of the free templates and themes on Start Bootstrap are released under the MIT license, which means you can use them for any purpose, even for commercial projects.
+PR-Peri is an open source library of free Bootstrap templates and themes. All of the free templates and themes on PR-Peri are released under the MIT license, which means you can use them for any purpose, even for commercial projects.
 
 * <https://startbootstrap.com>
 * <https://twitter.com/SBootstrap>
 
-Start Bootstrap was created by and is maintained by **[David Miller](http://davidmiller.io/)**.
+PR-Peri was created by and is maintained by **[David Miller](http://davidmiller.io/)**.
 
 * <http://davidmiller.io>
 * <https://twitter.com/davidmillerhere>
 * <https://github.com/davidtmiller>
 
-Start Bootstrap is based on the [Bootstrap](https://getbootstrap.com/) framework created by [Mark Otto](https://twitter.com/mdo) and [Jacob Thorton](https://twitter.com/fat).
+PR-Peri is based on the [Bootstrap](https://getbootstrap.com/) framework created by [Mark Otto](https://twitter.com/mdo) and [Jacob Thorton](https://twitter.com/fat).
 
 ## Copyright and License
 
-Copyright 2013-2021 Start Bootstrap LLC. Code released under the [MIT](https://github.com/StartBootstrap/startbootstrap-clean-blog-jekyll/blob/master/LICENSE) license.
+Copyright 2013-2021 PR-Peri LLC. Code released under the [MIT](https://github.com/StartBootstrap/startbootstrap-clean-blog-jekyll/blob/master/LICENSE) license.
