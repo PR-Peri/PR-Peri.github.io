@@ -1,2 +1,2 @@
-# PR-Peri-PR-Peri.github.io
+# PR-Peri.github.io
 Portfolio
