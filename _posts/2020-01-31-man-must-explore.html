@@ -14,13 +14,16 @@ background: '/img/posts/CVD-01.jpg'
             color: black;
         }
     </style>
+
     <footer>
-        <h2 class="Overview"> Overview</h2>
+        <h2 class="section-heading"> Overview</h2>
         <p> Among all fatal diseases, heart diseases are considered as the most prevalent. Medical practitioners
             conduct
             different types of surveys on heart diseases and gather details of heart patients, symptoms and disease
             progression.
-            Increasingly, it has been reported about patients with common diseases who have typical symptoms. On the
+            Increasingly, it has been reported about patients with common diseases who have typical symptoms.
+        </p>
+        <p> On the
             other hand,
             people easily forget to take care of themselves due to the work pressure. In this type of lifestyle they
             are
@@ -43,42 +46,160 @@ background: '/img/posts/CVD-01.jpg'
             based on few research paper.
             The aim
             of this project is to use the historical medical data to predict cardiovascular heart disease
-            using machine learning techniques. The scope of this research is is show the effect of feature
+            using machine learning techniques.
+        </p>
+        <p>
+            The scope of this research is is show the effect of feature
             correlation on the classification model with over four different algorithms namely, Logistic
-            Regression, Naive Bayes, Random Forest and Artificial Neural Network. Those algorithms are used to
+            Regression, Naïve Bayes, Random Forest and Artificial Neural Network. Those algorithms are used to
             analyze and to identify which techniques are the best suited technique which are effective to achieve
             high accuracy in classification of heart disease.
         </p>
+
+
+        <h2 class="section-heading">Objectives</h2>
+        <p>
+        <ul>
+            <li>Collection and selection of different heart disease datasets in order to train various machine learning
+                algorithms.</li>
+            <li>Comparison of various data mining algorithm’s accuracy and performance in predicting heart disease.</li>
+            <li>Selection of the best algorithm from performance characteristics of the models to develop a model for
+                heart
+                disease prediction</li>
+            <li>Comparision among the trained models to understand why it performs better the others.</li>
+        </ul>
+        </p>
+
+        <h2 class="section-heading">Literature Review</h2>
+
+        <p>
+            <img class="img-fluid" src="/img/posts/Picture1.png" alt="Demo Image">
+            <span class="caption text-muted"> Summary of Related Work from 8 different articles.</span>
+        </p>
+
+        <h2 class="section-heading">Research Methodology</h2>
+        <p>
+            <img class="img-fluid" src="/img/posts/Picture2.png" alt="Demo Image">
+            <span class="caption text-muted"> Flow of methodological research.</span>
+        </p>
+
+        <p>
+            This section depicts the overview of the proposed system and illustrates all of the components, techniques
+            and
+            tools are used for developing the entire system. To develop an intelligent and user-friendly heart disease
+            prediction system, an efficient software tool is needed in order to train huge datasets and compare multiple
+            machine learning algorithms.
+        </p>
+
+        <h3>Dataset Information </h3>
+        <p>
+        <p>
+            The dataset is obtained from UCI Machine Learning repository
+            <a href="https://archive.ics.uci.edu/ml/index.php">(Heart Disease UCI. 2018).</a>
+            It is a data
+            generator and
+            database that are used by the Machine Learning repository for further analysis and exploration of Data
+            Mining
+            algorithms. It
+            maintains around 425 datasets for the Machine Learning group. The cardiovascular heart disease dataset
+            from
+            Cleveland has about 303 rows,
+            Hungary dataset with 295 rows and Statlog dataset with 271 rows in total. All three datasets contain 14
+            columns, the attributes are described in detail on the figure below.
+
+        </p>
+
+        <img class="img-fluid" src="/img/posts/Picture3.png" alt="Demo Image">
+        <span class="caption text-muted"> Data Dictionary.</span>
+
+        </p>
+
+        <h2 class='section-heading'>Proposed Model</h2>
+        <p>
+            <b>Naïve Bayes</b> is a surprisingly powerful algorithm for predictive modeling. It is a statistical
+            classifier
+            which assumes no dependency between attributes attempting to maximize the posterior probability in
+            determining the class. Theoretically, this classifier has the minimum error rate, but may not be the case
+            always. Inaccuracies are caused by assumptions due to class conditional independence and the lack of
+            available probability data. This model is associated with two types of probabilities which can be calculated
+            from the training dataset directly:
+        <ul>
+            <li>The probability of every class.</li>
+            <li>The conditional probability of each class with each x value. </li>
+        </ul>
+        </p>
+        <p>
+            According to Bayesian theorem P(A|B)=P(A)∗P(B/A)/P(B) , where P(B|A)=P(A∩B)/P(A) .
+            Bayesian classifier calculates conditional probability of an instance belonging to each class, based on the
+            above formula, and based on such conditional probability data, the instance is classified as the class with
+            the highest conditional probability. If these probabilities are calculated, then the probabilistic model can
+            be implemented to make predictions with new data using Naïve Bayes Theorem. When the data is real-valued it
+            is likely to assume a Gaussian distribution (bell curve). Thus, these probabilities can easily be estimated.
+        </p>
+        <p>
+            Naïve Bayes is called Naïve because of assuming each input variable independent. This classifier algorithm
+            uses conditional independence, means it assumes that an attribute value on a given class is independent of
+            the values of other attributes.
+        </p>
+
+        <p>
+            <b>Random Forest</b> is one of the most renowned and most powerful machine learning algorithms. It is one
+            kind of
+            machine learning algorithm that is called Bagging or Bootstrap Aggregation. In order to estimate a value
+            from a data sample such as mean, the bootstrap is a very powerful statistical approach. Here, lots of
+            samples of data are taken, the mean is calculated, after that all of the mean values are averaged to give a
+            better prediction of the real mean value.
+        </p>
+        <p> In bagging, the same method is used, but instead of estimating the
+            mean of every data sample, decision trees are generally used. Here, numerous samples of the training data
+            are considered and models are generated for every data sample. While a prediction for any data is needed,
+            each model gives a prediction and these predictions are then averaged to get a better estimation of the real
+            output value.
+        </p>
+
+        <p>
+            <b>Logistic regression</b> is a technique of machine learning which is taken from the field of statistics.
+            This method can be used for binary classification where values are distinguished with two classes. Logistic
+            regression is similar to linear regression where the goal is to calculate the values of the coefficients
+            within every input variable. Unlike linear regression, here the prediction of the output is constructed
+            using a non-linear function which is called a logistic function.
+        </p>
+        <p>
+            The logistic function transforms any value
+            within the range of 0 to 1. The predictions made by logistic regression are used as the probability of a
+            data instance concerning to either class 0 or class 1. This can be necessary for problems where more
+            rationale for a prediction is needed. Logistic regression works better when attributes are unrelated to
+            output variable and attributes correlated to one another are removed.
+        </p>
+
+        <p>
+            <b>Artificial neural networks</b> also called Multilayer Perceptron is a supervised neural network
+            architecture with one input layer, one or more hidden layers and one output layer. The input layer receives
+            external inputs and then it will redistribute them to the neurons in the hidden layer. The hidden layer is
+            made up of computational neurons, these neurons detect the features hidden in the input data. The features
+            detected by neurons in the hidden layer are then used by the output layer to determine the final output of
+            the network. Once the architecture of a Multilayer Perceptron is determined, the weight of the network has
+            to be computed through a training process. The training is based on a desired network and training pattern
+            output. Backpropagation algorithm is used as a training algorithm for Multilayer Perceptron.
+        </p>
+
+        <h2 class="section-heading">Findings </h2>
+
+        <p>
+            <img class="img-fluid" src="/img/posts/Picture4.png" alt="Demo Image">
+            <span class="caption text-muted"> Data Dictionary.</span>
+        </p>
+
+        <p>
+            <img class="img-fluid" src="/img/posts/Picture5.png" alt="Demo Image">
+            <span class="caption text-muted"> Data Dictionary.</span>
+        </p>
+
+
+        <blockquote>
+            <p>Link to Published Research Article on ACM Digital Library <a
+                    href="https://doi.org/10.1145/3488466.3488482">Research Paper</a> and link to <a
+                    href="https://github.com/PR-Peri/PRs_FYP.git">Code Repository</a>.</p>
+        </blockquote>
     </footer>
-
-    <h2 class="section-heading">Objectives</h2>
-    <ul>
-        <li>To discover algorithms based on the performance metrics.</li>
-        <li>To learn how to extract data from various platforms and consolidate it.</li>
-        <li>To test the accuracy of the recommended design according to the algorithms.</li>
-        <li>To understand how the trained model perform based on its accuracy.</li>
-    </ul>
-
-    <h2 class="section-heading">Literature Review</h2>
-
-    <p>
-        <img class="img-fluid" src="/img/posts/Picture1.png" alt="Demo Image">
-        <span class="caption text-muted"> Summary of Related Work from 8 different articles.</span>
-    </p>
-
-    <h2 class="section-heading">Research Methodology</h2>
-    <p>
-        <img class="img-fluid" src="/img/posts/Picture2.png" alt="Demo Image">
-        <span class="caption text-muted"> Flow of methodological research.</span>
-    </p>
-
-    <p>Space, the final frontier. These are the voyages of the Starship Enterprise. Its five-year mission: to explore
-        strange new worlds, to seek out new life and new civilizations, to boldly go where no man has gone before.</p>
-
-    <p>As I stand out here in the wonders of the unknown at Hadley, I sort of realize there’s a fundamental truth to our
-        nature, Man must explore, and this is exploration at its greatest.</p>
-
-    <p>Placeholder text by <a href="http://spaceipsum.com/">Space Ipsum</a>. Photographs by <a
-            href="https://unsplash.com/">Unsplash</a>.</p>
-
 </body>
