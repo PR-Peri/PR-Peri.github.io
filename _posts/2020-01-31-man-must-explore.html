@@ -187,19 +187,63 @@ background: '/img/posts/CVD-01.jpg'
 
         <p>
             <img class="img-fluid" src="/img/posts/Picture4.png" alt="Demo Image">
-            <span class="caption text-muted"> Data Dictionary.</span>
+            <span class="caption text-muted"> Performance metrics comparision among datasets.</span>
         </p>
 
         <p>
             <img class="img-fluid" src="/img/posts/Picture5.png" alt="Demo Image">
-            <span class="caption text-muted"> Data Dictionary.</span>
+            <span class="caption text-muted"> Accuracy comparision among datasets</span>
         </p>
+
+
+        <p>
+            From the diagram, we can see that Logistic Regression outperforms for Hungary and Statlog dataset whereas
+            Artificial Neural Networks outperforms for
+            Cleveland Dataset. Overall, The least amount of accuracy is prodcued by Naïve Bayes for Hungary dataset.
+            After
+            further analysis, we have discovered that Naïve Bayes did not perform well due to having higher bias but
+            lower variance
+            compared to Logistic Regression. If the data set follows the bias then Naïve Bayes will be a better
+            classifier. Both Naïve Bayes and Logistic Regression are
+            linear classifiers, Logistic Regression makes a prediction for the probability using a direct functional
+            form whereas Naïve Bayes
+            figures out how the data was generated given the results.
+        </p>
+        <p>
+            <img class="img-fluid" src="/img/posts/Picture6.png" alt="Demo Image">
+            <span class="caption text-muted"> Accuracy comparision among datasets</span>
+        </p>
+
+        <p>
+            The training and testing data are splitted up as 80% and 20% where the 80% is used for training and 20% is
+            used
+            for
+            testing. I have implemented the real time prediction model for all the three datasets that I have worked on.
+            The
+            SHAP plot shows features that contribute to pushing the output from the base value or average model output
+            to
+            the actual predicted value. The red color, indicates features that are pushing the prediction higher
+            whereas blue color indicates pushing the prediction lower.
+        </p>
+        <p>
+            The diagram shows an example of a patient from
+            Cleveland's dataset having to be predicted of being diagnosed with heart disease. The value of the features,
+            causing increased predictions are in red, and their visual size shows the magnitude of the feature's effect.
+            Feature values decreasing the prediction are in blue. The biggest impact comes from
+            ‘chest_pain_type_atypical
+            angina’ due to its value being stated as 1.
+
+        </p>
+
 
 
         <blockquote>
             <p>Link to Published Research Article on ACM Digital Library <a
                     href="https://doi.org/10.1145/3488466.3488482">Research Paper</a> and link to <a
                     href="https://github.com/PR-Peri/PRs_FYP.git">Code Repository</a>.</p>
+
+            <p><i># On Site Note: The full documentation of the project is not released on this website to avoid copyright
+                issues. In to get the full documentation, you may drop a message via email to reach out to me. Thank You! </i></p>
         </blockquote>
     </footer>
 </body>
