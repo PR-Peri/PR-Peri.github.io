@@ -3,7 +3,7 @@ layout: post
 title: "Classification of Heart Disease using Machine Learning Algorithm"
 subtitle: "Research Paper (Interim Report FYP)"
 date: 2021-02-28 10:45:13 -0400
-background: '/img/posts/CVD-01.jpg'
+background: '/img/posts/CVD/CVD-01.jpg'
 ---
 
 <body>
@@ -49,6 +49,13 @@ background: '/img/posts/CVD-01.jpg'
 
         }
 
+        colorcap {
+            color: gold;
+            background-color: rgb(0, 0, 0);
+            font-size: 100%;
+            text-align: center
+        }
+
         #myBtn {
             display: none;
             position: fixed;
@@ -58,10 +65,10 @@ background: '/img/posts/CVD-01.jpg'
             font-size: 15px;
             border: none;
             outline: none;
-            background-color: rgb(20, 5, 87);
+            background-color: rgb(238, 208, 37);
             color: white;
             cursor: pointer;
-            padding: 15px;
+            padding: 10px;
             border-radius: 4px;
         }
 
@@ -70,7 +77,9 @@ background: '/img/posts/CVD-01.jpg'
         }
     </style>
 
-    <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+    <button onclick="topFunction()" id="myBtn" title="Back to top">
+        <img class="img-fluid" src="/img/posts/arrow.jpg" height="30" width="30">
+    </button>
 
     <script>
         var mybutton = document.getElementById("myBtn");
@@ -94,7 +103,7 @@ background: '/img/posts/CVD-01.jpg'
     </script>
 
     <footer>
-        <h2 class="section-heading" style="color:rgb(37, 217, 241)";> Overview</h2>
+        <h2 class="section-heading" style="color:rgb(37, 217, 241)" ;> Overview</h2>
         <p> Among all fatal diseases, heart diseases are considered as the most prevalent. Medical practitioners
             conduct
             different types of surveys on heart diseases and gather details of heart patients, symptoms and disease
@@ -135,7 +144,7 @@ background: '/img/posts/CVD-01.jpg'
         </p>
 
 
-        <h2 class="section-heading"  style="color:rgb(37, 217, 241)";>Objectives</h2>
+        <h2 class="section-heading" style="color:rgb(37, 217, 241)" ;>Objectives</h2>
         <p>
         <ul>
             <li>Collection and selection of different heart disease datasets in order to train various machine learning
@@ -148,18 +157,24 @@ background: '/img/posts/CVD-01.jpg'
         </ul>
         </p>
 
-        <h2 class="section-heading"  style="color:rgb(37, 217, 241)";>Literature Review</h2>
+        <h2 class="section-heading" style="color:rgb(37, 217, 241)" ;>Literature Review</h2>
 
-        <p>
-            <img class="img-fluid" src="/img/posts/Picture1.png" , height="100%" , width="800%" , alt="Demo Image">
-            <span class="caption text-muted"> Summary of Related Work from 8 different articles.</span>
-        </p>
+        <colorcap>
+            <p>
+                <img class="img-fluid" src="/img/posts/CVD/Picture1.png" , height="100%" , width="800%" ,
+                    alt="Demo Image">
+                <span> Summary of Related Work from 8 different articles.</span>
+            </p>
+        </colorcap>
 
-        <h2 class="section-heading" style="color:rgb(37, 217, 241)";>Research Methodology</h2>
-        <p>
-            <img class="img-fluid" src="/img/posts/Picture2.png" alt="Demo Image">
-            <span class="caption text-muted"> Flow of methodological research.</span>
-        </p>
+        <h2 class="section-heading" style="color:rgb(37, 217, 241)" ;>Research Methodology</h2>
+
+        <colorcap>
+            <p>
+                <img class="img-fluid" src="/img/posts/CVD/Picture2.png" alt="Demo Image">
+                <span> Flow of methodological research.</span>
+            </p>
+        </colorcap>
 
         <p>
             This section depicts the overview of the proposed system and illustrates all of the components, techniques
@@ -169,11 +184,12 @@ background: '/img/posts/CVD-01.jpg'
             machine learning algorithms.
         </p>
 
-        <h2 style="color:rgb(37, 217, 241)";>Dataset Information </h2>
-        <p>
+        <h2 style="color:rgb(37, 217, 241)" ;>Dataset Information </h2>
+
+
         <p>
             The dataset is obtained from UCI Machine Learning repository
-            <a href="https://archive.ics.uci.edu/ml/index.php">(Heart Disease UCI. 2018).</a>
+            <a href="https://archive.ics.uci.edu/ml/index.php " style="color:gold" ;>(Heart Disease UCI. 2018).</a>
             It is a data
             generator and
             database that are used by the Machine Learning repository for further analysis and exploration of Data
@@ -186,13 +202,17 @@ background: '/img/posts/CVD-01.jpg'
             columns, the attributes are described in detail on the figure below.
 
         </p>
+        
+        <colorcap>
+            <p>
+                <img class="img-fluid" src="/img/posts/CVD/Picture3.png" ,height="100%" , width="800%" ,
+                    alt="Demo Image">
+                <span>Data Dictionary.</span>
+            </p>
+        </colorcap>
 
-        <img class="img-fluid" src="/img/posts/Picture3.png" ,height="100%" , width="800%" , alt="Demo Image">
-        <span class="caption text-muted"> Data Dictionary.</span>
+        <h2 class='section-heading' , style="color:rgb(37, 217, 241)" ;>Proposed Model</h2>
 
-        </p>
-
-        <h2 class='section-heading', style="color:rgb(37, 217, 241)";>Proposed Model</h2>
         <p>
             <b>Naïve Bayes</b> is a surprisingly powerful algorithm for predictive modeling. It is a statistical
             classifier
@@ -261,21 +281,27 @@ background: '/img/posts/CVD-01.jpg'
             output. Backpropagation algorithm is used as a training algorithm for Multilayer Perceptron.
         </p>
 
-        <h2 class="section-heading", style="color:rgb(37, 217, 241)";>Findings </h2>
+        <h2 class="section-heading" , style="color:rgb(37, 217, 241)" ;>Findings </h2>
+
+        <colorcap>
+            <p>
+                <img class="img-fluid" src="/img/posts/CVD/Picture4.png" , height="100%" , width="800%" ,
+                    alt="Demo Image">
+                <span> Performance metrics comparision among datasets.</span>
+            </p>
+        </colorcap>
+
+        <colorcap>
+            <p>
+                <img class="img-fluid" src="/img/posts/CVD/Picture5.png" , height="100%" , width="800%" ,
+                    alt="Demo Image">
+                <span> Accuracy comparision among datasets</span>
+            </p>
+        </colorcap>
 
         <p>
-            <img class="img-fluid" src="/img/posts/Picture4.png" , height="100%" , width="800%" , alt="Demo Image">
-            <span class="caption text-muted"> Performance metrics comparision among datasets.</span>
-        </p>
-
-        <p>
-            <img class="img-fluid" src="/img/posts/Picture5.png" , height="100%" , width="800%" , alt="Demo Image">
-            <span class="caption text-muted"> Accuracy comparision among datasets</span>
-        </p>
-
-
-        <p>
-            From the diagram, we can see that Logistic Regression outperforms for Hungary and Statlog dataset whereas
+            From the diagram, we can see that Logistic Regression outperforms for Hungary and Statlog dataset
+            whereas
             Artificial Neural Networks outperforms for
             Cleveland Dataset. Overall, The least amount of accuracy is prodcued by Naïve Bayes for Hungary dataset.
             After
@@ -287,39 +313,53 @@ background: '/img/posts/CVD-01.jpg'
             form whereas Naïve Bayes
             figures out how the data was generated given the results.
         </p>
-        <p>
-            <img class="img-fluid" src="/img/posts/Picture6.png" , height="100%" , width="800%" , alt="Demo Image">
-            <span class="caption text-muted"> Accuracy comparision among datasets</span>
-        </p>
+
+        <colorcap>
+            <p>
+                <img class="img-fluid" src="/img/posts/CVD/Picture6.png" , height="100%" , width="800%" ,
+                    alt="Demo Image">
+                <span> Accuracy comparision among datasets</span>
+            </p>
+        </colorcap>
+
+
 
         <p>
-            The training and testing data are splitted up as 80% and 20% where the 80% is used for training and 20% is
+            The training and testing data are splitted up as 80% and 20% where the 80% is used for training and 20%
+            is
             used
             for
-            testing. I have implemented the real time prediction model for all the three datasets that I have worked on.
+            testing. I have implemented the real time prediction model for all the three datasets that I have worked
+            on.
             The
-            SHAP plot shows features that contribute to pushing the output from the base value or average model output
+            SHAP plot shows features that contribute to pushing the output from the base value or average model
+            output
             to
             the actual predicted value. The red color, indicates features that are pushing the prediction higher
             whereas blue color indicates pushing the prediction lower.
         </p>
         <p>
             The diagram shows an example of a patient from
-            Cleveland's dataset having to be predicted of being diagnosed with heart disease. The value of the features,
-            causing increased predictions are in red, and their visual size shows the magnitude of the feature's effect.
+            Cleveland's dataset having to be predicted of being diagnosed with heart disease. The value of the
+            features,
+            causing increased predictions are in red, and their visual size shows the magnitude of the feature's
+            effect.
             Feature values decreasing the prediction are in blue. The biggest impact comes from
             ‘chest_pain_type_atypical
             angina’ due to its value being stated as 1.
 
         </p>
 
-        <h1 style="color:rgb(37, 217, 241)";>Code</h1>
+
+
+        <h1 style="color:rgb(37, 217, 241)" ;>Code</h1>
         <blockquote>
             <p style="color:gold" ;>Link to Published Research Article on ACM Digital Library <a
-                    href="https://doi.org/10.1145/3488466.3488482" style="color:goldenrod";>Research Paper</a> and link to <a
-                    href="https://github.com/PR-Peri/PRs_FYP.git" style="color:goldenrod">Code Repository</a>.</p>
+                    href="https://doi.org/10.1145/3488466.3488482" style="color:goldenrod" ;>Research Paper</a> and link
+                to <a href="https://github.com/PR-Peri/PRs_FYP.git" style="color:goldenrod">Code Repository</a>.</p>
 
-            <p style="color:gold" ;><i># On Site Note: The full documentation of the project is not released on this website to avoid
+            <p style="color:gold" ;><i># On Site Note: The full documentation of the project is not released on this
+                    website to avoid
                     copyright
                     issues. In order to get the full documentation, you may drop a message via email to reach out to me.
                     Thank You! </i></p>
