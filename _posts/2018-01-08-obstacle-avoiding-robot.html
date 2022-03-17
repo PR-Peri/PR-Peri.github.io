@@ -24,6 +24,7 @@ background: '/img/posts/Robot/robot0.jpg'
             font-size: 80%
         }
 
+
         colorcap {
             color: gold;
             background-color: rgb(0, 0, 0);
@@ -108,8 +109,7 @@ background: '/img/posts/Robot/robot0.jpg'
         <h2 class="section-heading" style="color:rgb(37, 217, 241)" ;>Required Components</h2>
         <p>
         <ul>
-            <li>Batteries</li>
-            <li>Battery holder</li>
+            <li>Batteries and Battery holder</li>
             <li>Screw Drivers </li>
             <li>Hot Glue Gun / Tapes </li>
             <li>Wires </li>
@@ -135,11 +135,430 @@ background: '/img/posts/Robot/robot0.jpg'
 
         </colorcap>
 
+        <colorcap>
+
+            <p>
+                <img class="img-fluid" src="\img\posts\Robot\robo4.jpg" , height="100%" , width="800%">
+                <span>Figure above shows the device </span>
+            </p>
+
+        </colorcap>
+
+
     </footer>
 
+    <h5 class="section-heading" style="color:rgb(196, 68, 168); background-color: rgb(0, 0, 0);">Clkdiv.vhd</h5>
+
+    <pre
+        style="word-wrap: break-word; white-space: pre-wrap; color:lime ; background-color: rgb(66, 66, 66); font-size:50%;">
+        LIBRARY ieee;
+        USE ieee.std_logic_1164.ALL;
+        USE ieee.std_logic_unsigned.ALL;
+        
+        ENTITY clkdiv IS
+            PORT (
+                clock_50 : IN std_logic;
+                clr : IN std_logic;
+                clock_q : OUT std_logic);
+        END ENTITY;
+        
+        ARCHITECTURE behaviour OF clkdiv is12
+            SIGNAL q : std_logic_vector(23 DOWNTO 0);
+        BEGIN
+            --clock divider
+            PROCESS (clock_50, clr)
+            BEGIN
+                IF clr = '1' THEN
+                    q &lt;= X"000000"; -- hex number
+                ELSIF clock_50'event AND clock_50 = '1' THEN
+                    q &lt;= q + 1;
+                END IF;
+            END PROCESS;
+            clock_q &lt;= q(6);
+        END ARCHITECTURE;
+        </pre>
+
+    <h5 class="section-heading" style="color:rgb(172, 52, 146);  background-color: rgb(0, 0, 0);">Counter.vhd</h5>
+
+    <pre
+        style="word-wrap: break-word; white-space: pre-wrap; color:lime ; background-color: rgb(66, 66, 66); font-size:50%">
+        LIBRARY ieee;
+        USE ieee.std_logic_1164.ALL;
+        USE ieee.std_logic_unsigned.ALL;
+        
+        ENTITY counter IS
+            GENERIC (n : POSITIVE := 10);
+            PORT (
+                clk : IN std_logic;
+                enable : IN std_logic;
+                reset : IN std_logic; -- active low
+                counter_output : OUT std_logic_vector(n - 1 DOWNTO 0));
+        END ENTITY;
+        
+        ARCHITECTURE behavioural OF counter IS
+            SIGNAL count : std_logic_vector(n - 1 DOWNTO 0);
+        BEGIN
+            PROCESS (clk, reset)
+            BEGIN
+                IF (reset = '0') THEN
+                    count &lt;= (OTHERS =&gt; '0');
+                ELSIF (clk'event AND clk = '1') THEN
+                    IF (enable = '1') THEN
+                        count &lt;= count + 1;
+                    END IF;
+                END IF;
+            END PROCESS;
+            counter_output &lt;= count;
+        END ARCHITECTURE;
+    </pre>
+
+    <h5 class="section-heading" style="color:rgb(172, 52, 146);  background-color: rgb(0, 0, 0);">Obstacle_avoidance.vhd</h5>
+
+    <pre
+        style="word-wrap: break-word; white-space: pre-wrap; color:lime ; background-color: rgb(66, 66, 66); font-size:60%; text-align:left;">
+        LIBRARY ieee;
+        USE ieee.std_logic_1164.ALL;
+        
+        ENTITY robot IS
+            PORT (
+                fpgaclk : IN std_logic;
+                echo : IN std_logic_vector(2 DOWNTO 0);
+                trigger : OUT std_logic_vector(2 DOWNTO 0);
+                led : OUT std_logic_vector(2 DOWNTO 0);
+                Motor_L_forward, Motor_R_forward, Motor_L_backward, Motor_R_backward : OUT std_logic);
+        END ENTITY;
+        
+        ARCHITECTURE behaviour OF robot IS
+            COMPONENT pwm IS
+                --generic(N : integer:=7);
+                PORT (
+                    CLOCK_50 : IN std_logic;
+                    duty : IN std_logic_vector(15 DOWNTO 0);
+                    pwm : OUT std_logic);
+            END COMPONENT;
+        
+            COMPONENT three_ultrasonic IS
+                PORT (
+                    fpgaclk : IN std_logic;
+                    pulse : IN std_logic_vector(2 DOWNTO 0);
+                    triggerOut : OUT std_logic_vector(2 DOWNTO 0);
+                    ultrasonic_out : OUT std_logic_vector(2 DOWNTO 0));
+            END COMPONENT;
+        
+            SIGNAL ultrasonic : std_logic_vector(2 DOWNTO 0);
+            SIGNAL pwm_1, pwm_2 : std_logic;
+            SIGNAL forward, backward, turn_left, turn_right : std_logic;
+            SIGNAL duty_1, duty_2 : std_logic_vector(15 DOWNTO 0);
+        
+        BEGIN
+            PWM1 : pwm PORT MAP(fpgaclk, duty_1, pwm_1); -- generate pwm for the motors
+            PWM2 : pwm PORT MAP(fpgaclk, duty_2, pwm_2);
+        
+            -- motion control selection of the motor --
+            PROCESS (forward, backward, turn_left, turn_right)
+            BEGIN
+                IF (forward = '1') THEN
+                    motor_R_forward &lt;= pwm_1;
+                    motor_L_forward &lt;= pwm_2;
+                    motor_L_backward &lt;= '0';
+                    motor_R_backward &lt;= '0';
+                ELSIF (backward = '1') THEN
+                    motor_R_backward &lt;= pwm_2;
+                    motor_L_backward &lt;= pwm_1;
+                    motor_R_forward &lt;= '0';
+                    motor_L_forward &lt;= '0';
+                ELSIF (turn_right = '1') THEN
+                    motor_L_forward &lt;= pwm_2;
+                    motor_R_backward &lt;= pwm_1;
+                    motor_R_forward &lt;= '0';
+                    motor_L_backward &lt;= '0';
+                ELSIF (turn_left = '1') THEN
+                    motor_R_forward &lt;= pwm_2;
+                    motor_L_backward &lt;= pwm_1;
+                    motor_R_backward &lt;= '0';
+                    motor_L_forward &lt;= '0';
+                END IF;
+            END PROCESS;
+        
+            range_sensor : three_ultrasonic PORT MAP(fpgaclk, echo, trigger, ultrasonic);
+            PROCESS (ultrasonic)
+            BEGIN
+                CASE (ultrasonic) IS
+                    WHEN "000" =&gt;
+                        forward &lt;= '1';
+                        backward &lt;= '0';
+                        turn_right &lt;= '0';
+                        turn_left &lt;= '0';
+                        duty_1 &lt;= X"00BE";
+                        duty_2 &lt;= X"00C3";
+                    WHEN "001" =&gt;
+                        forward &lt;= '0';
+                        backward &lt;= '0';
+                        turn_right &lt;= '0';
+                        turn_left &lt;= '1';
+                        duty_1 &lt;= X"00C3";
+                        duty_2 &lt;= X"00C3";
+                    WHEN "010" =&gt;
+                        backward &lt;= '1';
+                        forward &lt;= '0';
+                        turn_right &lt;= '0';
+                        turn_left &lt;= '0';
+                        duty_1 &lt;= X"0041";
+                        duty_2 &lt;= X"00C3";
+                    WHEN "011" =&gt;
+                        turn_left &lt;= '0';
+                        backward &lt;= '1';
+                        forward &lt;= '0';
+                        turn_right &lt;= '0';
+                        duty_1 &lt;= X"00C3";
+                        duty_2 &lt;= X"0041";
+                    WHEN "100" =&gt;
+                        forward &lt;= '0';
+                        backward &lt;= '0';
+                        turn_right &lt;= '1';
+                        turn_left &lt;= '0';
+                        duty_1 &lt;= X"00C3";
+                        duty_2 &lt;= X"00C3";
+                    WHEN "101" =&gt;
+                        forward &lt;= '1';
+                        backward &lt;= '0';
+                        turn_right &lt;= '0';
+                        turn_left &lt;= '0';
+                        duty_1 &lt;= X"00BE";
+                        duty_2 &lt;= X"00C3";
+                    WHEN "110" =&gt;
+                        turn_right &lt;= '0';
+                        turn_left &lt;= '0';
+                        backward &lt;= '1';
+                        forward &lt;= '0';
+                        duty_1 &lt;= X"0041";
+                        duty_2 &lt;= X"00C3";
+                    WHEN "110" =&gt;
+                        turn_right &lt;= '1';
+                        turn_left &lt;= '0';
+                        backward &lt;= '1';
+                        forward &lt;= '0';
+                        duty_1 &lt;= X"00C3";
+                        duty_2 &lt;= X"00C3";
+                    WHEN "111" =&gt;
+                        backward &lt;= '1';
+                        forward &lt;= '0';
+                        turn_right &lt;= '0';
+                        turn_left &lt;= '0';
+                        duty_1 &lt;= X"00C3";
+                        duty_2 &lt;= X"0041";
+                END CASE;
+            END PROCESS;
+        
+            led(2) &lt;= NOT(ultrasonic(2));
+            led(1) &lt;= NOT(ultrasonic(1));
+            led(0) &lt;= NOT(ultrasonic(0));
+        
+        END ARCHITECTURE;
+    </pre>
 
 
+    <h5 class="section-heading" style="color:rgb(172, 52, 146);  background-color: rgb(0, 0, 0);">Pwn.vhd</h5>
+
+    <pre
+        style="word-wrap: break-word; white-space: pre-wrap; color:lime ; background-color: rgb(66, 66, 66); font-size:60%; text-align:left;">
+        LIBRARY ieee;
+        USE ieee.std_logic_1164.ALL;
+        USE ieee.std_logic_unsigned.ALL;
+        
+        ENTITY pwm IS
+            PORT (
+                CLOCK_50 : IN std_logic;
+                duty : IN std_logic_vector(15 DOWNTO 0);
+                pwm : OUT std_logic);
+        END pwm;
+        
+        ARCHITECTURE behaviour OF pwm IS
+        
+            COMPONENT clkdiv IS
+                PORT (
+                    clock_50 : IN std_logic;
+                    clr : IN std_logic;
+                    clock_q : OUT std_logic);
+            END COMPONENT;
+        
+            SIGNAL count : std_logic_vector(15 DOWNTO 0);
+            SIGNAL clk, pwm_sig : std_logic;
+            SIGNAL period : std_logic_vector(15 DOWNTO 0);
+            SIGNAL clr : std_logic;
+        
+        BEGIN
+            period &lt;= X"00C3"; --
+            clr &lt;= '0';
+        
+            PROCESS (clk, clr)
+            BEGIN
+                IF (clr = '1') THEN
+                    count &lt;= X"0000";
+                ELSIF (clk'event AND clk = '1') THEN
+                    IF (count = period - 1) THEN
+                        count &lt;= X"0000";
+                    ELSE
+                        count &lt;= count + 1;
+                    END IF;
+                END IF;
+            END PROCESS;
+        
+            PROCESS (count)
+            BEGIN
+                IF (count &lt; duty) THEN
+                    pwm_sig &lt;= '1';
+                ELSIF (count &gt; duty) THEN
+                    pwm_sig &lt;= '0';
+                END IF;
+            END PROCESS;
+        
+            pwm &lt;= pwm_sig;
+            CLOCK : clkdiv PORT MAP(clock_50, '0', clk); -- divide 50Mhz clock to clk_q6
+        
+        END ARCHITECTURE;
+         
+        </pre>
+
+    <h5 class="section-heading" style="color:rgb(172, 52, 146);  background-color: rgb(0, 0, 0);">Three_Ultrasonic.vhd</h5>
+
+    <pre
+        style="word-wrap: break-word; white-space: pre-wrap; color:lime ; background-color: rgb(66, 66, 66); font-size:60%; text-align:left;">
+        LIBRARY ieee;
+        USE ieee.std_logic_1164.ALL;
+        ENTITY three_ultrasonic IS
+            PORT (
+                fpgaclk : IN std_logic;
+                pulse : IN std_logic_vector(2 DOWNTO 0);
+                triggerOut : OUT std_logic_vector(2 DOWNTO 0);
+                ultrasonic_out : OUT std_logic_vector(2 DOWNTO 0));
+        END ENTITY;
+        ARCHITECTURE behaviour OF three_ultrasonic IS
+            COMPONENT ultrasonic IS
+                PORT (
+                    fpgaclk : IN std_logic;
+                    pulse : IN std_logic; -- echo
+                    triggerOut : OUT std_logic; -- trigger out
+                    obstacle : OUT std_logic);
+            END COMPONENT;
+        BEGIN
+            ultrasonic_Left : ultrasonic PORT MAP(fpgaclk, pulse(0), triggerOut(0), ultrasonic_out(0));
+            ultrasonic_Middle : ultrasonic PORT MAP(fpgaclk, pulse(1), triggerOut(1), ultrasonic_out(1));
+            ultrasonic_Right : ultrasonic PORT MAP(fpgaclk, pulse(2), triggerOut(2), ultrasonic_out(2));
+        END ARCHITECTURE;
+    </pre>
+
+    <h5 class="section-heading" style="color:rgb(172, 52, 146); background-color: rgb(0, 0, 0);">Trigger_Generator.vhd</h5>
+
+    <pre
+        style="word-wrap: break-word; white-space: pre-wrap; color:lime ; background-color: rgb(66, 66, 66); font-size:60%; text-align:left;">
+        LIBRARY ieee;
+        USE ieee.std_logic_1164.ALL;
+        ENTITY trigger_generator IS
+            PORT (
+                clk : IN std_logic;
+                trigg : OUT std_logic);
+        END ENTITY;
+        ARCHITECTURE behaviour OF trigger_generator IS
+            COMPONENT counter IS
+                GENERIC (n : POSITIVE := 10);
+                PORT (
+                    clk : IN std_logic;
+                    enable : IN std_logic;
+                    reset : IN std_logic; -- active low
+                    counter_output : OUT std_logic_vector(n - 1 DOWNTO 0));
+                15
+            END COMPONENT;
+            SIGNAL resetCounter : std_logic;
+            SIGNAL outputCounter : std_logic_vector(23 DOWNTO 0);
+        BEGIN
+            trigger_gen : counter GENERIC MAP(24)
+            PORT MAP(clk, '1', resetCounter, outputCounter);
+            PROCESS (clk)
+                CONSTANT ms100 : std_logic_vector(23 DOWNTO
+                0) := "010011000100101101000000";--20ns/100ms
+                -- constant ms100And20us: std_logic_vector(23 downto
+                0) := "010011000100111100100110";
+                CONSTANT ms100And20us : std_logic_vector(23 DOWNTO
+                0) := "010011000100110100110011";--20ns/(100ms+20us)
+            BEGIN
+                IF (outputCounter &gt; ms100 AND outputCounter &lt;
+                    ms100And20us) THEN
+                    trigg &lt;= '1';
+                ELSE
+                    trigg &lt;= '0';
+                END IF;
+                IF (outputCounter = ms100and20us OR
+                    outputCounter = "XXXXXXXXXXXXXXXXXXXXXXXX") THEN
+                    resetCounter &lt;= '0';
+                ELSE
+                    resetCounter &lt;= '1';
+                END IF;
+            END PROCESS;
+        END ARCHITECTURE;
+        </pre>
+
+        <h5 class="section-heading" style="color:rgb(172, 52, 146); background-color: rgb(0, 0, 0);">Ultrasonic.vhd</h5>
+
+        <pre
+            style="word-wrap: break-word; white-space: pre-wrap; color:lime ; background-color: rgb(66, 66, 66); font-size:60%; text-align:left;">
+            LIBRARY ieee;
+            USE ieee.std_logic_1164.ALL;
+            USE ieee.std_logic_unsigned.ALL;
+            USE ieee.numeric_std;
+            
+            ENTITY ultrasonic IS
+                PORT (
+                    fpgaclk : IN std_logic;
+                    pulse : IN std_logic; -- echo
+                    triggerOut : OUT std_logic; -- trigger out
+                    obstacle : OUT std_logic);
+            END ENTITY;
+            
+            ARCHITECTURE behaviour OF ultrasonic IS
+                COMPONENT counter IS
+                    GENERIC (n : POSITIVE := 10);
+                    PORT (
+                        clk : IN std_logic;
+                        enable : IN std_logic;
+                        reset : IN std_logic; -- active low
+                        counter_output : OUT std_logic_vector(n - 1 DOWNTO 0));
+                END COMPONENT;
+            
+                COMPONENT trigger_generator IS
+                    PORT (
+                        clk : IN std_logic;
+                        trigg : OUT std_logic);
+                END COMPONENT;
+            
+                SIGNAL pulse_width : std_logic_vector(21 DOWNTO 0);
+                SIGNAL trigg : std_logic;
+            
+            BEGIN
+                counter_echo_pulse :
+                counter GENERIC MAP(22) PORT MAP(fpgaclk, pulse, NOT(trigg), pulse_width);
+                trigger_generation :
+                trigger_generator PORT MAP(fpgaclk, trigg);
+            
+                obstacle_detection : PROCESS (pulse_width)
+                BEGIN
+                    IF (pulse_width &lt; 55000) THEN
+                        obstacle &lt;= '1';
+                    ELSE
+                        obstacle &lt;= '0';
+                    END IF;
+                END PROCESS;
+            
+                triggerOut &lt;= trigg;
+            
+            END ARCHITECTURE;
+            </pre>
 
 
+    <h1 style="color:rgb(37, 217, 241)" ;>Code</h1>
+    <blockquote>
+        <p style="color:gold" ;>Link to <a href="https://github.com/PR-Peri/PRs_IntelFGPA_Robot.git"
+                style="color:goldenrod">Code Repository</a>.</p>
 
+    </blockquote>
 </body>
