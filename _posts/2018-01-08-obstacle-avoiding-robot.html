@@ -60,6 +60,8 @@ background: '/img/posts/Robot/robot0.jpg'
 
     <script>
         var mybutton = document.getElementById("myBtn");
+        var message = "Right- Click Function Disabled!";
+
 
         // When the user scrolls down 20px from the top of the document, show the button
         window.onscroll = function () { scrollFunction() };
@@ -77,6 +79,27 @@ background: '/img/posts/Robot/robot0.jpg'
             document.body.scrollTop = 0;
             document.documentElement.scrollTop = 0;
         }
+
+        function disableselect(e) {
+            return false
+        }
+
+        function reEnable() {
+            return true
+        }
+
+        //if IE4+  
+        document.onselectstart = new Function("return false")
+        document.oncontextmenu = new Function("return false")
+        document.oncontextmenu = new Function("alert(message);return false")
+
+        //if NS6  
+        if (window.sidebar) {
+            document.onmousedown = disableselect
+            document.onclick = reEnable
+
+        }
+
     </script>
 
     <h2 class="section-heading" style="color:rgb(37, 217, 241)" ;>Overview</h2>

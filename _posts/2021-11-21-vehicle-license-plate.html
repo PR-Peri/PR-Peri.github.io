@@ -3,5 +3,103 @@ layout: post
 title: "Vehicle License Plate Character Recognition "
 subtitle: "Visual Information Processing"
 date: 2021-11-21 12:00:00 -0400
-background: '/img/posts/Vehicle/car5.jpg'
+background: '/img/posts/Vehicle/car2.jpg'
 ---
+
+<body>
+    <style>
+        body {
+            background-image: url('http://i.stack.imgur.com/kx8MT.gif');
+            background-size: cover;
+            height: 100vh;
+            padding: 0;
+            margin: 0;
+        }
+
+        footer {
+            text-align: justify;
+            padding: 3px;
+            background-color: rgb(0, 0, 0);
+            color: white;
+            font-size: 80%
+        }
+
+        code {
+            font-family: monospace;
+            color: crimson;
+            background-color: #f1f1f1;
+            padding: 20px;
+            font-size: 105%;
+            display: block;
+            font-family: monospace;
+            white-space: pre;
+        }
+
+        #myBtn {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 30px;
+            z-index: 99;
+            font-size: 15px;
+            border: none;
+            outline: none;
+            background-color: rgb(238, 208, 37);
+            color: white;
+            cursor: pointer;
+            padding: 10px;
+            border-radius: 4px;
+        }
+
+        #myBtn:hover {
+            background-color: #555;
+        }
+    </style>
+
+    <button onclick="topFunction()" id="myBtn" title="Back to top">
+        <img class="img-fluid" src="/img/posts/arrow.jpg" height="30" width="30">
+    </button>
+
+    <script>
+        var mybutton = document.getElementById("myBtn");
+        var message = "Right- Click Function Disabled!";
+
+
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function () { scrollFunction() };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                mybutton.style.display = "block";
+            } else {
+                mybutton.style.display = "none";
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+
+        function disableselect(e) {
+            return false
+        }
+
+        function reEnable() {
+            return true
+        }
+
+        //if IE4+  
+        document.onselectstart = new Function("return false")
+        document.oncontextmenu = new Function("return false")
+        document.oncontextmenu = new Function("alert(message);return false")
+
+        //if NS6  
+        if (window.sidebar) {
+            document.onmousedown = disableselect
+            document.onclick = reEnable
+
+        }
+
+    </script>

@@ -81,8 +81,11 @@ background: '/img/posts/CVD/CVD-01.jpg'
         <img class="img-fluid" src="/img/posts/arrow.jpg" height="30" width="30">
     </button>
 
+
     <script>
         var mybutton = document.getElementById("myBtn");
+        var message = "Right- Click Function Disabled!";
+
 
         // When the user scrolls down 20px from the top of the document, show the button
         window.onscroll = function () { scrollFunction() };
@@ -100,6 +103,27 @@ background: '/img/posts/CVD/CVD-01.jpg'
             document.body.scrollTop = 0;
             document.documentElement.scrollTop = 0;
         }
+
+        function disableselect(e) {
+            return false
+        }
+
+        function reEnable() {
+            return true
+        }
+
+        //if IE4+  
+        document.onselectstart = new Function("return false")
+        document.oncontextmenu = new Function("return false")
+        document.oncontextmenu = new Function("alert(message);return false")
+
+        //if NS6  
+        if (window.sidebar) {
+            document.onmousedown = disableselect
+            document.onclick = reEnable
+
+        }
+
     </script>
 
     <footer>
@@ -202,7 +226,7 @@ background: '/img/posts/CVD/CVD-01.jpg'
             columns, the attributes are described in detail on the figure below.
 
         </p>
-        
+
         <colorcap>
             <p>
                 <img class="img-fluid" src="/img/posts/CVD/Picture3.png" ,height="100%" , width="800%" ,
