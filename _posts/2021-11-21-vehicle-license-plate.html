@@ -30,7 +30,7 @@ background: '/img/posts/Vehicle/car2.jpg'
             font-size: 100%;
             text-align: center
         }
-        
+
         code {
             font-family: monospace;
             color: crimson;
@@ -108,9 +108,7 @@ background: '/img/posts/Vehicle/car2.jpg'
             document.onclick = reEnable
 
         }
-
     </script>
-
 
     <footer>
         <h2 class="section-heading" style="color:rgb(37, 217, 241)" ;> Overview</h2>
@@ -164,19 +162,752 @@ background: '/img/posts/Vehicle/car2.jpg'
             image so that the quality of the image will be improved and save up computational time.
             <br></br>
 
-            Figure below shows the original car image. First, color images to the grayscale conversion will be performed.
+            Figure below shows the original car image. First, color images to the grayscale conversion will be
+            performed.
             It is a major step to speed up and ease the following imaging processes. After that, bilateral filtering
             will be applied to the gray image to remove the edge of noise surrounding the license plate, while
-            preserving the edges of characters in the image sharp. Figure 3.2 displays the sample gray image after the
+            preserving the edges of characters in the image sharp. Figure below displays the sample gray image after the
             bilateral filer was applied. This step can also ensure the algorithm avoids unrelated background details.
         </p>
 
         <colorcap>
             <p>
-                <img class="img-fluid" src="/img/posts/Vehicle/Picture1.png" , height="100%" , width="800%" ,
+                <img class="img-fluid" src="/img/posts/Vehicle/car2-1.png" , height="100%" , width="800%" ,
                     alt="Demo Image">
-                <span> Summary of Related Work from 8 different articles.</span>
             </p>
         </colorcap>
 
+        <br></br>
+        <h5 class="section-subtitle" style="color:rgb(37, 241, 139)" ;> License Plate Detection</h5>
+
+        <p>
+            Canny edge detection with the findContours function was proposed to identify the license plate location.
+            After the image preprocessing, edge detection is performed to localize the license plate, whereby it shows
+            the edges of the image. The edges have mostly surrounded the characters on the license plate region. Canny
+            edge detector in OpenCV will be used to perform edge detection as it can detect both horizontal and vertical
+            edges while suppressing the remaining noise in the image. The sample output results are shown in Figure
+            below
+            <br></br>
+
+            Next, to allocate the contours in the image, the findContours function of OpenCV was being used. The
+            detected contours count the number of edges it bounds then sorted it in descending order, which is from big
+            to small. When a maximum localized number of edges is found, that portion of the image will be detected as
+            the license plate. This is because a license plate is a four-sided rectangle bounding. Figure below shows
+            the
+            license plate is detected surrounded by a red bounding box.
+            <br></br>
+
+            After that, masking is applied to the entire image excluding the region where the license plate is detected.
+            This is because the detected license plate will be cropped out into a new image. The cropped license plate
+            will then be saved into a folder in the directory and will be used for the following processes.
+        </p>
+
+        <colorcap>
+            <p>
+                <img class="img-fluid" src="/img/posts/Vehicle/car2-2.png" , height="100%" , width="800%" ,
+                    alt="Demo Image">
+            </p>
+        </colorcap>
+
+        <br></br>
+        <h5 class="section-subtitle" style="color:rgb(37, 241, 139)" ;> Character Segmentation</h5>
+
+        <p>
+            Segmentation is to extract each of the characters on the license plate for identification. The method of
+            combining threshold operations and the findContours function for character segmentation was proposed.
+            <br></br>
+
+            As for the first stage, we have converted the detected grayscale image into a binary image by thresholding
+            The findContours function to obtain each of the individual characters from the license plate. Firstly, the
+            height and width of the plate are divided and stored into a variable called “ratio”. We select a contour
+            that has a height larger than 50% of the plate, and a bounding box will be drawn around the contours of the
+            character for the plate’s ratios that are between 1 to 3.5. Next, each of the bounding boxes is separated
+            and resized into a standard width and height which is the size of 30 x 60. Lastly, conversion to binary
+            images is performed again by using the threshold method.
+            <br></br>
+
+            <colorcap>
+                <p>
+                    <img class="img-fluid" src="/img/posts/Vehicle/car2-3.png" , height="100%" , width="800%" ,
+                        alt="Demo Image">
+                </p>
+            </colorcap>
+
+            Once, each of the characters in the license plate is segmented correctly, then it will proceed to the next
+            stage which is character recognition.
+            <br></br>
+
+        </p>
+
+
+        <h5 class="section-subtitle" style="color:rgb(37, 241, 139)" ;> Character Recognition</h5>
+
+        <p>
+            There are two supervised machine learning classification algorithms that will be implemented to recognize
+            the license plate character after the segmentation process. We have implemented a feature extraction method
+            where training the model begins with character segmentation by constructing a horizontal projection to the
+            plate for detecting the character’s position and space. Then the characters are segmented and built for the
+            database. The characters were distributed into the sequence of A-Z, and 0-9 for further operations for our
+            models.
+        </p>
+
+        <colorcap>
+            <p>
+                <img class="img-fluid" src="/img/posts/Vehicle/car2-4.png" , height="100%" , width="800%" ,
+                    alt="Demo Image">
+            </p>
+        </colorcap>
     </footer>
+
+    <footer>
+        <h2 class="section-heading" style="color:rgb(37, 217, 241)" ;> Proposed Model</h2>
+        <br></br>
+        <h5 class="section-subtitle" style="color:rgb(37, 241, 139)" ;>OCR Algorithm-Python-tesseract</h5>
+        <p>
+            OCR is short for Optical Character Recognition. A two-dimensional image that contains text is
+            reconstructed by OCR into a machine-readable text. OCR can be used on any type of image file, such as
+            PDF document or even handwritten document. Python has an open-source OCR engine that supports a huge
+            variety of languages. Currently, Tesseract has included a neural network subsystem that functions to
+            recognize texts. After detecting text regions from an image with the OpenCV library, the ROI of text is
+            then passed into Tesseract which will build an OpenCV OCR pipeline.
+            <br></br>
+            Tesseract needs to be installed and the directory of its installation needs to be stated on the .py file
+            and set to path environment. This allows the terminal to pip install tesseract and runs it. The
+            configuration of the directory plays an important part as any mistake in the steps stated above could
+            result in the image files not being able to work along with tesseract.
+            <br></br>
+            There are several configuration options that are needed in order for the OCR model to work effectively.
+            Page segmentation modes(psm), OCR engine modes(oem) and languages(l) need to be defined in the tesseract
+            model. Psm needs to be set as it defines the way tesseract splits or segments images into several lines
+            of words. Options that were chosen for the kaggle dataset was ‘--psm 7’. This takes an image and treats
+            it as one single line. This configuration particularly worked well with the kaggle dataset as there were
+            many unique fonts present. ‘-- psm 11’ was most suitable with the Malaysia dataset as this configuration
+            takes in sparse text and finds as much text in no particular order. Some new fonts that were detected by
+            creating a bounding box and labeling them were fed into the training data to detect the different fonts.
+            For both the datasets, the oem was set to 3. Oem helps to configure different engine modes and 3 is a
+            default setting that uses what is available.
+            <br></br>
+        </p>
+        <h5 class="section-subtitle" style="color:rgb(37, 241, 139)" ;>Artificial Neural Networks (ANNs)</h5>
+
+        <p>
+            The second machine learning algorithm that is implemented is Artificial Neural Network (ANN). ANN
+            was selected due to the ability to drive meaning from complicated or imprecise data, where it can be
+            used to extract patterns and detect patterns that are too complex to be noticed by humans or any
+            other machine learning algorithms.
+            <br></br>
+
+            Initially, the image data is first transformed to a gray level image then the image is binarized for
+            contours extraction. The threshold is set by image size where it detects the x-axis of the image. If
+            the width is greater than the threshold, the image will be cropped. The normalized character image
+            size is 28 x 28 and it should match the template. Then the minimum bounding rectangle is calculated
+            for further character segmentation. After finding the out bounding rectangle of the characters, it
+            is easy to crop out the rectangle regions each with a character as a traditional segmentation
+            method. The resized images were passed using an image data generator where random transformations on
+            each training image are fed to the model. This will not only make the model robust but will also be
+            able to save up on the overhead memory. Hence, the trained list of data will be used from feature
+            extraction techniques to proceed further for training.
+            <br></br>
+
+            Next, the image will be fed into an ANN Model for training. During the training, parameters will be
+            adjusted according to the number of iterations, batch size, hidden layer neurons, and other
+            conditions. Once the training phase is done, the trained network is ready to use for test data. The
+            testing input is fed into the input layer and the feed-forward network will generate results based
+            on its knowledge from the trained network and the output will be stored into a ‘.csv’ file format.
+
+            <br></br>
+        </p>
+        <h5 class="section-subtitle" style="color:rgb(37, 241, 139)" ;>Random Forest (RF)</h5>
+
+        <p>
+            The third machine learning technique for the evaluation comparison is Random Forest
+            Classification. The reason for choosing Random Forest Classifier rather than Decision Tree is
+            because of its flexibility resulting in a vast improvement in accuracy as Random Forest's trees
+            do not correlate with each other.
+            <br></br>
+
+            Unlike OCR and ANN, Random Forest has a limitation on processing images, it could only process
+            the images if the image has been converted to numeric data. Therefore, before performing the
+            classifier, we employed the database which is the segmented characters that were distributed in
+            sequence from A-Z, 0-9 to perform resizing action. After resizing the segmented characters into
+            the size of 150 x 150, we then appended them into a NumPy array. To train the model to recognize
+            the characters A-Z and 0-9, we created a list of categories from A-Z, 0-9, then appended them
+            into another array. By performing these actions, the segmented characters will then be trained
+            based on the list of categories. We split the data into 80% of the train set and 20% of the test
+            set, and select 130 numbers of trees, “gini” for criterion, and the rest are following the
+            default parameters of Random Forest Classifier.
+            <br></br>
+
+            We wish to save some time when running the models for the Kaggle and Malaysia datasets, we
+            implemented joblib to save the classifier model. When running the saved classifier model, the
+            output will be appended into a list and printed into a CSV file.
+        </p>
+    </footer>
+
+    <footer>
+        <h2 class="section-heading" style="color:rgb(37, 217, 241)" ;> Experiment and Findings</h2>
+        <p>This section displays and interprets the outputs by breaking down the performance of the algorithm with
+            different image conditions.</p>
+        <h5 class="section-subtitle" style="color:rgb(37, 241, 139)" ;>Datasets </h5>
+        <p>
+            We have used 2 datasets for this research. One of the datasets is taken from Kaggle which contains 433
+            images
+            of cars with license plates whereas the second dataset is the Malaysia license plate which contains 120
+            images of Malaysian cars taken by our group members. All these license plates vary from different angles,
+            lighting conditions, and resolutions.
+        </p>
+
+        <h5 class="section-subtitle" style="color:rgb(37, 241, 139)" ;>Quantitative evaluation</h5>
+
+        <p> The score of Accuracy, Precision, Recall will be used to evaluate the performance of the three machine
+            learning algorithms. By these scores, we will have a result on which machine learning algorithms performed
+            the best in recognizing the character of license plates.
+        </p>
+
+        <h5 class="section-subtitle" style="color:rgb(37, 241, 139)" ;>License Plate Detection</h5>
+
+        <p>Accuracy is used to evaluate the performance of the license plate detection on the algorithm quantitatively.
+            Equation shows the formula to calculate accuracy for plate detection.
+        </p>
+
+        <colorcap>
+            <p>
+                <img class="img-fluid" src="/img/posts/Vehicle/car3-1.png" ,height="100%" , width="800%" ,
+                    alt="Demo Image">
+            </p>
+        </colorcap>
+
+        <p>
+            The evaluation method above calculates the accuracy by dividing the number of correctly detected license
+            plates with the total number of car images, then multiplying by 100%. We will consider a successful
+            detection of the license plates as long as the bounding box of the license plates is fully detected.
+            <br></br>
+
+            There were multiple duplicated images and unrelated car images in the Kaggle dataset. Therefore, among 433
+            car images, only 230 license plates were successfully detected. The accuracy obtained for the Kaggle dataset
+            is 53.12%. On the other hand, for the Malaysia dataset, we were able to successfully detect 76 license
+            plates from 120 car images. Thus, the Malaysia dataset obtained an accuracy of 63.33%. The accuracy
+            performance is highly influenced by the quality of the images.
+
+        </p>
+
+        <h5 class="section-subtitle" style="color:rgb(37, 241, 139)" ;>Character segmentation and recognition</h5>
+
+        <p>Three different evaluation metrics were used to evaluate our work, as per license plate, and based on
+            character segmentation with accuracy, recall, and precision.
+            <br></br>
+            Precision is used to measure how well detected regions agree with the corresponding ground truth. It was
+            calculated using the image by taking the number of correctly predicted regions that had a corresponding
+            ground truth and dividing it by the total number of correctly predicted regions and wrongly detected
+            characters.
+            <br></br>
+
+            Secondly, recall measures how well the ground truth regions were detected. The calculator is performed by
+            taking the number of correctly predicted regions that had a corresponding ground truth and dividing it by
+            the total number of correctly predicted regions and missing detected characters.
+            <br></br>
+
+            Next, accuracy was calculated as the number of correct detections divided by the total number of
+            predictions. The calculation for accuracy was based on the number of correctly classified regions divided by
+            the total number of character segmentation.
+
+        </p>
+
+        <colorcap>
+            <p>
+                <img class="img-fluid" src="/img/posts/Vehicle/car3-2.png" ,height="100%" , width="800%" ,
+                    alt="Demo Image">
+            </p>
+        </colorcap>
+
+        <colorcap>
+            <p>
+                <img class="img-fluid" src="/img/posts/Vehicle/car3-3.png" ,height="100%" , width="800%" ,
+                    alt="Demo Image">
+            </p>
+        </colorcap>
+
+        <p>
+
+            The overall performance by checking the entire license plate, Tesseract's OCR prevailed to have the highest
+            accuracy which is 38.26% in the kaggle dataset. Which is swiftly followed by ANN with 13.19% and 2.17% from
+            Random forest.
+            <br></br>
+
+            When it comes to comparing the accuracy, precision and recall from the characters perspective, OCR produces
+            the accuracy of 52.8%, precision of 53.23% and recall of 67.6%. ANN leads second with accuracy of 33.51%,
+            precision of 33.98% and recall of 48.04%. Finally random forest reigns last with accuracy of 24.4%,
+            precision of 24.96% and recall of 44.98%.
+            <br></br>
+
+            From the Malaysian dataset, the OCR model has an overall accuracy of 40.79 % for the entire license plate.
+            Although ANN is leading second with the accuracy of 3.04% it is not far off from Random Forest that produced
+            an accuracy of 2.63%.
+            <br></br>
+
+            OCR leads with an accuracy of 52.01%, precision of 51.98% and recall of 57.89% on evaluating the Malaysian
+            dataset by characters. ANN leads second with an accuracy of 6.29%, precision of 7.36% and 8.83%. Random
+            Forest follows closely to ANN with an accuracy of 6.88%, precision of 7.47% and recall of 9.35%.
+        </p>
+
+        <colorcap>
+            <p>
+                <img class="img-fluid" src="/img/posts/Vehicle/car3-4.png" ,height="100%" , width="800%" ,
+                    alt="Demo Image">
+            </p>
+        </colorcap>
+    </footer>
+
+    <footer>
+        <h5 class="section-subtitle" style="color:rgb(37, 241, 139)" ;> Qualitative evaluation</h5>
+
+        <p>The qualitative analysis includes examining, comparing, contrasting, and interpreting patterns. Observation
+            of the output images will be performed to determine whether the license plates were detected correctly and
+            each of the characters was segmented accurately. Besides, observation is done to determine if lightning
+            conditions and license plates’ angles will affect the detection of license plates and recognizing the
+            characters.
+            <br></br>
+
+            Moreover, investigating the reasons on the model resulted in good and bad output. Observation of the output
+            will be performed to determine whether the license plates were in different conditions such as blurry,
+            reflection, lighting conditions, and different angles on shooting the license plate that caused the
+            generated output.
+
+            <br></br><i>
+                In note: The full documentation for this part will not be revelead, for more information, please drop a
+                message on the contact page.
+            </i>
+        </p>
+
+    </footer>
+
+    <footer>
+        <h2 style="color:rgb(37, 217, 241)" ;>Conclusion </h2>
+        <p>
+            In conclusion, this project aimed to assist humans in recognizing license plates automatically from images.
+            Instead of manually checking the license plate one by one, our proposed method will be an alternative
+            technique that effectively helps humans shorten the time used to recognize license plates. Automatic number
+            plate recognition systems do not just record the numbers, but they do it in real-time, which gives a clear
+            view of insights into monitoring the surveillance. From the research that our group conducted, it is very
+            noticeable that the OCR model performed much better with an overall accuracy of 38.26% on the Kaggle
+            dataset, which is then followed by ANN with an accuracy of 13.91% and RF with 2.17%. On the Malaysian
+            dataset OCR performed better with 40.79% accuracy, which is followed by ANN with 3.04% and RF with 2.63%
+            accuracy. Although the models did not perform as well as theorised, they can be improved on by in depth
+            preprocessing and different font training for the models. This project will be able to benefit security or
+            traffic departments where it could be used to assist in inspections, forensics, investigations, and legal
+            proceedings.
+        </p>
+
+    </footer>
+    <footer>
+        <h2 class="section-heading" , style="color:rgb(37, 217, 241)" ;> Sample Code </h2>
+
+        <pre style="word-wrap: break-word; white-space: pre-wrap; color:lime ; background-color: rgb(66, 66, 66); font-size:60%; text-align:left;">
+            import cv2
+            import numpy as np
+            import pandas as pd
+            import random
+            import imutils
+            import joblib
+            import os
+            import matplotlib
+            import matplotlib.pyplot as plt
+            import pytesseract
+            from PIL import Image
+            import pytesseract
+            pytesseract.pytesseract.tesseract_cmd = 'C:\\Program Files\\Tesseract-OCR\\tesseract.exe'
+            import warnings 
+            import matplotlib.gridspec as gridspec
+            warnings.filterwarnings(action= 'ignore')
+            from os import listdir
+            import matplotlib.cm as cm
+            from os.path import isfile, join, splitext
+            import tensorflow as tf
+            from sklearn.metrics import f1_score 
+            from tensorflow.keras import optimizers
+            from tensorflow.keras.models import Sequential
+            from tensorflow.keras.layers import Dense, Flatten, MaxPooling2D, Dropout, Conv2D, Activation
+            from tensorflow.keras.models import model_from_json
+            from tensorflow.keras.preprocessing.image import ImageDataGenerator
+            import tensorflow.keras.backend as K
+            from sklearn.model_selection import train_test_split
+            from sklearn.metrics import classification_report,accuracy_score,confusion_matrix
+            from sklearn.preprocessing import StandardScaler
+            import os
+            from skimage.transform import resize
+            from skimage.io import imread
+            
+            ## PLATE DETECTION
+            
+            # fetch current working directory
+            current_path = os.getcwd()
+            # folder is fetched where license plate images are located dynamically
+            folder = os.path.join(current_path, 'Malaysia_subset')  #"Kaggle_dataset" is the folder name contains the subset car images
+            # folder to save cropped license plate
+            dirName = 'A'   #"K_output" is the folder name to store the cropped license plates
+            count = 1
+            
+            for filename in os.listdir(folder):
+                img = cv2.imread((os.path.join(folder, filename)))
+                write_folder = os.path.join(current_path, dirName)
+            
+                # name of file which is to be written to chosed folder
+                image_name_to_write = (os.path.join(write_folder,'Cropped_{}.png'.format(count)))
+            
+                # convert to Grayscale Image
+                gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+            
+                # noise removal with bilateral filter
+                biFilter = cv2.bilateralFilter(gray, 13, 17, 17)
+            
+                # Canny edge detection
+                canny = cv2.Canny(biFilter, 170, 200)
+            
+                # find contours based on Edges
+                contours = cv2.findContours(canny.copy(), cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
+                
+                # sort contours based on minimum area 30
+                contours = imutils.grab_contours(contours)
+                contours = sorted(contours, key=cv2.contourArea, reverse=True)[:30]
+            
+                # create copy of original image to draw contours
+                image_copy = img.copy()
+                _ = cv2.drawContours(image_copy, contours, -1, (255,0,255),2)
+            
+                contour_with_license_plate = None
+                license_plate = None
+                x = None
+                y = None
+                w = None
+                h = None
+                counts=1
+            
+                # loop over contours to find the best possible approximate contour of license plate
+                for c in contours:
+                    perimeter = cv2.arcLength(c, True)
+                    approx = cv2.approxPolyDP(c, 0.018 * perimeter, True)
+                    if len(approx) == 4:
+                        contour_with_license_plate = approx
+                        x, y, w, h = cv2.boundingRect(c)
+                        img = cv2.rectangle(img, (x,y), (x+w,y+h), (255,0,0), 2)
+                        license_plate = gray[y:y + h, x:x + w]
+                        break
+            
+                if license_plate is None:
+                    detected = 0
+                    print("No contour detected!")
+                else:
+                    detected = 1
+            
+                if detected == 1:
+                    image_copy = img.copy()
+                    cv2.drawContours(image_copy, contours, -1, (255,0,255),2)
+                    mask = np.zeros(gray.shape,np.uint8)
+                    cv2.drawContours(mask,[contour_with_license_plate],0,255,-1)
+            
+                    (x, y) = np.where(mask == 255)
+                    (top_x, top_y) = (np.min(x), np.min(y))
+                    (bottom_x, bottom_y) = (np.max(x), np.max(y))
+                    crop = img[top_x:bottom_x+1, top_y:bottom_y+1]
+                    crop2 = gray[top_x:bottom_x+1, top_y:bottom_y+1]  #cropped license plate
+            
+                # image file is written using cv2.imwrite function
+                write_images = cv2.imwrite(image_name_to_write, crop2)
+                count = count+1
+            
+            ## MODAL MENU
+            print(' ')
+            print('*** Choice Selection ***')
+            print('Choice 1. Kaggle Dataset')
+            print('Choice 2. Kaggle Subset Data')
+            print('Choice 3. Malaysia Dataset')
+            print('Choice 4. Malaysia Subset Data')
+            print(' ')
+            choice = int(input('Enter a choice (1-4): '))
+            print(' ')
+            
+            # READ IMAGE DIRECTORY
+            
+            ## *(MAKE CHANGES ACCORDING TO THE IMAGE FILE DIRECTORY)* 
+            input_dir = "Malaysia_output"
+            numImages = 30
+            
+            onlyfiles = [f for f in listdir(input_dir) if isfile(join(input_dir, f))]
+            file = onlyfiles[0:numImages]
+            files =  sorted(file,key=lambda x: int(x.split('Cropped_')[1].split('.png')[0]))
+            # print(files)
+            count = 0
+            
+            # FOR KAGGLE DATASET
+            
+            for i, name in enumerate(files):
+                img = cv2.imread(input_dir+ '/' + name, 0)
+                plate_image = cv2.convertScaleAbs(img, alpha=(255.0))
+                #binary = cv2.threshold(img, 180, 255,cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)[1]
+                binary = cv2.threshold(img,180,255,cv2.THRESH_OTSU + cv2.THRESH_BINARY)[1]
+                
+                def sort_contours(cnts,reverse = False):
+                    i = 0
+                    boundingBoxes = [cv2.boundingRect(c) for c in cnts]
+                    (cnts, boundingBoxes) = zip(*sorted(zip(cnts, boundingBoxes),key=lambda b: b[1][i], reverse=reverse))
+                    return cnts
+            
+                cont, _  = cv2.findContours(binary, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+                # creat a copy version "test_roi" of plat_image to draw bounding box
+                test_roi = plate_image.copy()
+                # Initialize a list which will be used to append charater image
+                crop_characters = []
+                # define standard width and height of character
+                digit_w, digit_h = 30, 60
+                for c in sort_contours(cont):
+                    (x, y, w, h) = cv2.boundingRect(c)
+                    ratio = h/w
+                    if 1&lt;=ratio&lt;=3.5: # Only select contour with defined ratio
+                        if h/plate_image.shape[0]&gt;=0.5: # Select contour which has the height larger than 50% of the plate
+                            # Draw bounding box arroung digit number
+                            cv2.rectangle(test_roi, (x, y), (x + w, y + h), (0, 255,0), 2)
+                            # Sperate number and gibe prediction
+                            curr_num = binary[y:y+h,x:x+w]
+                            curr_num = cv2.resize(curr_num, dsize=(digit_w, digit_h))
+                            _, curr_num = cv2.threshold(curr_num, 220, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
+                            crop_characters.append(curr_num)
+            
+                Categories=['0', '1', '2', '3', '4', '5',
+                            '6', '7', '8', '9', 'A', 'B',
+                            'C', 'D', 'E', 'F', 'G', 'H',
+                            'I', 'J', 'K', 'L', 'M', 'N',
+                            'O', 'P', 'Q', 'R', 'S', 'T',
+                            'U', 'V', 'W', 'X', 'Y', 'Z']
+                
+                flat_data_arr=[] #input array
+                target_arr=[] #output array
+            
+                datadir='C:/Users/user/Desktop/VIP Project/Characters'  # please change to your dir which contains all the categories of images (CHARACTER folder)
+            
+                for i in Categories:
+                    #print(f'loading... category : {i}')
+                    path=os.path.join(datadir,i)
+                    for img in os.listdir(path):
+                        img_array=imread(os.path.join(path,img))
+                        img_resized=resize(img_array,(150,150,3))
+                        flat_data_arr.append(img_resized.flatten())
+                        target_arr.append(Categories.index(i))
+                    #print(f'loaded category:{i} successfully')
+            
+                flat_data=np.array(flat_data_arr)
+                target=np.array(target_arr)
+            
+                df=pd.DataFrame(flat_data) 
+                df['Target']=target
+            
+                x=df.iloc[:,:-1] #input data 
+                y=df.iloc[:,-1] #output data
+            
+                from sklearn.model_selection import train_test_split
+                from sklearn.metrics import classification_report,accuracy_score,confusion_matrix
+            
+                x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.20,random_state=77,stratify=y)
+            
+                loaded_rf = joblib.load("./RF_compressed.joblib")
+                loaded_rf.predict(x_test)
+                
+                output =[]
+            
+                if choice == 1:
+                    print('Choice 1 selected.')
+                    # RF
+                    for i,ch in enumerate(crop_characters):
+                        img_resize=resize(ch,(150,150,3))
+                        l=[img_resize.flatten()]
+                        probability=loaded_rf.predict_proba(l)
+                        a_list = Categories[loaded_rf.predict(l)[0]]
+                        output.append(a_list) #storing the result in a list
+            
+                    plate_number = ''.join(output)
+                    print(plate_number, file=open("ZRF_output_Kaggle.csv", "a"))
+            
+                    # ANN
+                    def load_keras_model(model_name):
+                    # Load json and create model
+                        json_file = open('./{}.json'.format(model_name), 'r')
+                        loaded_model_json = json_file.read()
+                        json_file.close()
+                        model = model_from_json(loaded_model_json)
+                        # Load weights into new model
+                        model.load_weights("./{}.h5".format(model_name))
+                        return model  
+                
+                    # store_keras_model(model, 'model_License_Plate')
+                    pre_trained_model = load_keras_model('model_License_Plate')
+                    model = pre_trained_model
+                    output = []
+             
+                    def fix_dimension(img):
+                        new_img = np.zeros((28,28,3))
+                        for i in range(3):
+                            new_img[:,:,i] = img 
+                        return new_img
+            
+                    for i,ch in enumerate(crop_characters): #iterating over the characters
+                        img_ = cv2.resize(ch, (28,28), interpolation=cv2.INTER_AREA)
+                        img = fix_dimension(img_)
+                        img = img.reshape(1,28,28,3) #preparing image for the model
+                        y_ = model.predict_classes(img)[0] #predicting the class
+                        character = Categories[y_] #
+                        output.append(character) #storing the result in a list
+            
+                    plate_number = ''.join(output)
+                    print(plate_number, file=open("ZANN_output_Kaggle.csv", "a"))
+            
+                elif choice == 2:
+                    print('Choice 2 selected.')
+                    # RF
+                    for i,ch in enumerate(crop_characters):
+                        img_resize=resize(ch,(150,150,3))
+                        l=[img_resize.flatten()]
+                        probability=loaded_rf.predict_proba(l)
+                        a_list = Categories[loaded_rf.predict(l)[0]]
+                        output.append(a_list) #storing the result in a list
+            
+                    plate_number = ''.join(output)
+                    print(plate_number, file=open("ZRF_subset_Kaggle.csv", "a"))
+            
+                    # ANN
+                    def load_keras_model(model_name):
+                    # Load json and create model
+                        json_file = open('./{}.json'.format(model_name), 'r')
+                        loaded_model_json = json_file.read()
+                        json_file.close()
+                        model = model_from_json(loaded_model_json)
+                        # Load weights into new model
+                        model.load_weights("./{}.h5".format(model_name))
+                        return model  
+                
+                    # store_keras_model(model, 'model_License_Plate')
+                    pre_trained_model = load_keras_model('model_License_Plate')
+                    model = pre_trained_model
+                    output = []
+             
+                    def fix_dimension(img):
+                        new_img = np.zeros((28,28,3))
+                        for i in range(3):
+                            new_img[:,:,i] = img 
+                        return new_img
+            
+                    for i,ch in enumerate(crop_characters): #iterating over the characters
+                        img_ = cv2.resize(ch, (28,28), interpolation=cv2.INTER_AREA)
+                        img = fix_dimension(img_)
+                        img = img.reshape(1,28,28,3) #preparing image for the model
+                        y_ = model.predict_classes(img)[0] #predicting the class
+                        character = Categories[y_] #
+                        output.append(character) #storing the result in a list
+            
+                    plate_number = ''.join(output)
+                    print(plate_number, file=open("ZANN_subset_Kaggle.csv", "a"))
+            
+            # FOR MALAYSIA DATASET
+            
+                elif choice == 3:
+                    print('Choice 3 selected.')
+                    # RF
+                    for i,ch in enumerate(crop_characters):
+                        img_resize=resize(ch,(150,150,3))
+                        l=[img_resize.flatten()]
+                        probability=loaded_rf.predict_proba(l)
+                        a_list = Categories[loaded_rf.predict(l)[0]]
+                        output.append(a_list) #storing the result in a list
+            
+                    plate_number = ''.join(output)
+                    print(plate_number, file=open("ZRF_output_MY.csv", "a"))
+            
+                    # ANN
+                    def load_keras_model(model_name):
+                    # Load json and create model
+                        json_file = open('./{}.json'.format(model_name), 'r')
+                        loaded_model_json = json_file.read()
+                        json_file.close()
+                        model = model_from_json(loaded_model_json)
+                        # Load weights into new model
+                        model.load_weights("./{}.h5".format(model_name))
+                        return model  
+                
+                    # store_keras_model(model, 'model_License_Plate')
+                    pre_trained_model = load_keras_model('model_License_Plate')
+                    model = pre_trained_model
+                    output = []
+             
+                    def fix_dimension(img):
+                        new_img = np.zeros((28,28,3))
+                        for i in range(3):
+                            new_img[:,:,i] = img 
+                        return new_img
+            
+                    for i,ch in enumerate(crop_characters): #iterating over the characters
+                        img_ = cv2.resize(ch, (28,28), interpolation=cv2.INTER_AREA)
+                        img = fix_dimension(img_)
+                        img = img.reshape(1,28,28,3) #preparing image for the model
+                        y_ = model.predict_classes(img)[0] #predicting the class
+                        character = Categories[y_] #
+                        output.append(character) #storing the result in a list
+            
+                    plate_number = ''.join(output)
+                    print(plate_number, file=open("ZANN_output_MY.csv", "a"))
+            
+            
+                elif choice == 4:
+                    print('Choice 4 selected.')
+                    # RF
+                    for i,ch in enumerate(crop_characters):
+                        img_resize=resize(ch,(150,150,3))
+                        l=[img_resize.flatten()]
+                        probability=loaded_rf.predict_proba(l)
+                        a_list = Categories[loaded_rf.predict(l)[0]]
+                        output.append(a_list) #storing the result in a list
+            
+                    plate_number = ''.join(output)
+                    print(plate_number, file=open("ZRF_subset_MY.csv", "a"))
+            
+                    # ANN
+                    def load_keras_model(model_name):
+                    # Load json and create model
+                        json_file = open('./{}.json'.format(model_name), 'r')
+                        loaded_model_json = json_file.read()
+                        json_file.close()
+                        model = model_from_json(loaded_model_json)
+                        # Load weights into new model
+                        model.load_weights("./{}.h5".format(model_name))
+                        return model  
+                
+                    # store_keras_model(model, 'model_License_Plate')
+                    pre_trained_model = load_keras_model('model_License_Plate')
+                    model = pre_trained_model
+                    output = []
+             
+                    def fix_dimension(img):
+                        new_img = np.zeros((28,28,3))
+                        for i in range(3):
+                            new_img[:,:,i] = img 
+                        return new_img
+            
+                    for i,ch in enumerate(crop_characters): #iterating over the characters
+                        img_ = cv2.resize(ch, (28,28), interpolation=cv2.INTER_AREA)
+                        img = fix_dimension(img_)
+                        img = img.reshape(1,28,28,3) #preparing image for the model
+                        y_ = model.predict_classes(img)[0] #predicting the class
+                        character = Categories[y_] #
+                        output.append(character) #storing the result in a list
+            
+                    plate_number = ''.join(output)
+                    print(plate_number, file=open("ZANN_subset_MY.csv", "a"))
+            
+                else:
+                    print('Error! Please input an integer value from 1 to 4 (1-4).')</pre>
+
+        <blockquote>
+            <p style="color:gold" ;>Link to complete <a href="https://github.com/PR-Peri/LPD_Finalised.git"
+                    style="color:goldenrod">Code Repository</a>.</p>
+
+        </blockquote>
+    </footer>
+
+</body>
