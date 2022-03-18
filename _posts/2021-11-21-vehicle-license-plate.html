@@ -24,6 +24,13 @@ background: '/img/posts/Vehicle/car2.jpg'
             font-size: 80%
         }
 
+        colorcap {
+            color: gold;
+            background-color: rgb(0, 0, 0);
+            font-size: 100%;
+            text-align: center
+        }
+        
         code {
             font-family: monospace;
             color: crimson;
@@ -103,3 +110,73 @@ background: '/img/posts/Vehicle/car2.jpg'
         }
 
     </script>
+
+
+    <footer>
+        <h2 class="section-heading" style="color:rgb(37, 217, 241)" ;> Overview</h2>
+        <p>Transportation plays a big role in human life no matter transporting goods or humans. Many countries had set
+            up some traffic cameras on major roads such as highways to observe vehicular traffic for safety purposes.
+            Therefore, it is essential to identify the vehicle license plate effectively. In this paper, a comparison of
+            three machine learning techniques is proposed to evaluate the accuracy of recognizing the vehicle license
+            plate character after performing the license plate detection and character segmentation </p>
+
+    </footer>
+
+    <footer>
+        <h2 class="section-heading" style="color:rgb(37, 217, 241)" ;> Introduction</h2>
+        <p>There are always vehicle-related crimes and traffic jams occurring all over the world. License plate
+            detection or Automatic Number Plate Recognition (ANPR) or some would even call it License plate Recognition
+            (LPR) is something that is constantly seeking for monitoring and easing investigation that is related to
+            vehicles. In addition to that, LPR also helps to provide better security, ticketless parking, and even
+            plunge into the research of smart cities that use LPR to understand traffic. LPR is defined as the
+            capability of capturing an image or a digital video of a license plate and transforming it into optical data
+            that allows us to gather digital information from it.
+            <br></br>
+
+            Through the detection of license plates were able to derive and plate different types of information such as
+            the type of vehicle, where it originated from, the driver's information, and finally, the records of
+            complaints and warnings received by the vehicle. There are many attempts on creating the optimal LPR but
+            there are different types of license plates being created all over the world, with different designs and
+            state codes.
+            <br></br>
+
+            This project will be looking into the optimal method for license plate character recognition by implementing
+            different algorithms and fine-tuning them to produce the best accuracy. This project will be using two
+            datasets one that is sourced from Kaggle which has about 433 cars along with their license plate and the
+            file size is about 212.88MB. The other set of data was collected from the members capturing car images in
+            Malaysia. It contains 120 images of cars with Malaysian license plates.
+        </p>
+
+    </footer>
+
+    <footer>
+        <h2 class="section-heading" style="color:rgb(37, 217, 241)" ;> Research Approach</h2>
+        <br></br>
+        <h5 class="section-subtitle" style="color:rgb(37, 241, 139)" ;> Image Preprocessing</h5>
+
+        <p>
+            As mentioned in the introduction this project will be using two datasets, one sourced from Kaggle and
+            another data was collected by the members.
+            <br></br>
+
+            Interference in the original input images like noise, distortion, size, and quality of the image will affect
+            the recognition performances. To minimize these interference factors, preprocessing is required on the input
+            image so that the quality of the image will be improved and save up computational time.
+            <br></br>
+
+            Figure below shows the original car image. First, color images to the grayscale conversion will be performed.
+            It is a major step to speed up and ease the following imaging processes. After that, bilateral filtering
+            will be applied to the gray image to remove the edge of noise surrounding the license plate, while
+            preserving the edges of characters in the image sharp. Figure 3.2 displays the sample gray image after the
+            bilateral filer was applied. This step can also ensure the algorithm avoids unrelated background details.
+        </p>
+
+        <colorcap>
+            <p>
+                <img class="img-fluid" src="/img/posts/Vehicle/Picture1.png" , height="100%" , width="800%" ,
+                    alt="Demo Image">
+                <span> Summary of Related Work from 8 different articles.</span>
+            </p>
+        </colorcap>
+
+    </footer>
