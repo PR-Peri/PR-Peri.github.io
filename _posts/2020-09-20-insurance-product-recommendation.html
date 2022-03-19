@@ -1,9 +1,9 @@
 ---
 layout: post
-title: "[Bug-Fixes 'X' ] Insurance Product Recommendation "
+title: "Insurance Product Recommendation "
 subtitle: "Social Media Analytics"
 date: 2021-03-12 10:45:13 -0400
-background: '/img/posts/smc/smc.jpg'
+background: '/img/posts/insurance/insurancee.jpg'
 ---
 
 <body>
@@ -558,3 +558,108 @@ background: '/img/posts/smc/smc.jpg'
             we think about it, `Age' might be one of the features that can contribute
             the most to the prediction.
         </p>
+
+        <h5 class="section-subtitle" style="color:rgb(37, 241, 139)" ;>Cluster Analysis</h5>
+
+        <p> Cluster Analysis is performed to find similarity between a pair of sub-
+            jects. From Figure 12 below, we have perform elbow method on label en-
+            coded features of `MovingToNewCompany' and `MalaysiaPR'. From the figure, we can conclude that the optimal
+            number of cluster for the features
+            `MovingToNewCompany' and `MalaysiaPR' is 3.
+        </p>
+
+        <colorcap>
+            <p>
+                <img class="img-fluid" src="/img/posts/insurance/insurance-14.jpg" , height="100%" , width="800%" ,
+                    alt="Demo Image">
+                <span>Elbow Method</span>
+            </p>
+        </colorcap>
+
+        <h5 class="section-subtitle" style="color:rgb(37, 241, 139)" ;>Accuracy Measurement</h5>
+
+        <p> According to our project, we have discovered the results of all three
+            algorithms, starting from the analysis of the training and testing data set of
+            the output values. Figure below shows the differences of results within
+            three algorithms NB, LG and KNN.
+        </p>
+
+        <colorcap>
+            <p>
+                <img class="img-fluid" src="/img/posts/insurance/insurance-15.png" , height="100%" , width="800%" ,
+                    alt="Demo Image">
+                <span>Result of Accuracy among LG,KNN and NB</span>
+            </p>
+        </colorcap>
+
+        <p>
+            We can see that, occupation as an employer has the highest accuracy
+            among all the sub-categories of occupation, and the second highest is govern-
+            ment servant. Not only that, the accuracy of LG and NB algorithm has the
+            constant accuracy for the selected attributes compared to KNN algorithm,
+            there is slight difference in terms of accuracy. The changes in accuracy
+            might be due to speed or performance of the respective algorithm. After
+            getting the results from accuracy model, we have selected the top most two
+            occupation (Employer and Government Servant) for further analysis. We
+            continued observing with classiffcation report to measure the quality of pre-
+            dictions from a classification algorithm. How many predictions are True and
+            how many are False. More specifically, True Positives (TP), False Positives
+            (FP), True negatives (TN) and False Negatives(FN).The report shows the
+            main classification metrics precision, recall and f1-score on a per class ba-
+            sis. The metrics are calculated by using true and false positives, true and
+            false negatives. Positive and negative in this case are generic names for the
+            predicted classes.
+        </p>
+
+        <colorcap>
+            <p>
+                <img class="img-fluid" src="/img/posts/insurance/insurance-16.png" , height="100%" , width="800%" ,
+                    alt="Demo Image">
+                <span>Classification report for Government Servant(%)</span>
+            </p>
+        </colorcap>
+
+        <colorcap>
+            <p>
+                <img class="img-fluid" src="/img/posts/insurance/insurance-17.png" , height="100%" , width="800%" ,
+                    alt="Demo Image">
+                <span>Classification report for Employer(%)</span>
+            </p>
+        </colorcap>
+
+        <p>
+            From the results, the F1-score is a weighted harmonic mean of pre-
+            cision and recall such that the best score is 1.0 and the worst is 0.0. From
+            the score, Occupation as Employer with the class '0' has a closer range to
+            1.0 compared to Government Servant with class of '0' for F1-Score which
+            means the higher the F1-Score the better it is.
+        </p>
+
+    </footer>
+
+
+    <footer>
+        <h2 class="section-heading" style="color:rgb(37, 217, 241)" ;> Conclusion</h2>
+        <p>
+            Putting everything into consideration, the insurance company can rec-
+            ommend more employers and government servants to subscribe for the in-
+            surance packages since both the occupation holds the most amount of sub-
+            scriptions from the data set we have explored so far. Secondly, insurance
+            company could come up with more compromising packages for unemployed
+            and private employees, to get more customers. Besides that, it is always
+            a added benefit to the insurance company on analysing their data as they
+            could get an insight of their customers.In addition, it can also benefit the
+            customers since they can be aware on what type of packages that they lack.
+            At last,the best accuracy model from the overall observation, is NB and LG
+            because both is slightly ahead and they had the same accuracy calculations,
+            unlike KNN. So the performance of both model is acceptable.
+        </p>
+    </footer>
+
+    <footer>
+        <blockquote>
+            <p style="color:gold" ;>Link to complete <a href="https://github.com/PR-Peri/Data_Mining_Project.git"
+                    style="color:goldenrod">Code Repository</a>.</p>
+
+        </blockquote>
+    </footer>
