@@ -131,16 +131,430 @@ background: '/img/posts/smc/smc.jpg'
             'insurance.csv'
             which consist of 500 rows and 24 columns. Below is the description of the
             variables that are included in our data set:
-  
+
         </p>
 
         <colorcap>
             <p>
-                <img class="img-fluid" src="/img/posts/insurance/Picture6.png" , height="100%" , width="800%" ,
+                <img class="img-fluid" src="/img/posts/insurance/insurance-1.png" , height="100%" , width="800%" ,
                     alt="Demo Image">
-                <span> Accuracy comparision among datasets</span>
+            </p>
+        </colorcap>
+
+        <p>
+            Most of the variables that was provided in the data set is under-
+            standable and clearly described. For this project, we focused more on the
+            Customer Needs 1 (the primary need of the customer), Customer Needs 2,
+            (The secondary requirement of a customer), PurchasedPlan1 (Available
+            plans under the Customer Needs 1), and PurchasedPlan2 (Available plans
+            under the Customer Needs 2). Below, we will further explain step-by-step
+            on how our project was carried.
+
+        </p>
+
+    </footer>
+
+    <footer>
+        <h2 class="section-heading" style="color:rgb(37, 217, 241)" ;>Exploratory Data Analysis</h2>
+
+        <colorcap>
+            <p>
+                <img class="img-fluid" src="/img/posts/insurance/insurance-2.png" , height="100%" , width="800%" ,
+                    alt="Demo Image">
+            </p>
+        </colorcap>
+
+        <p>
+            Overall work for Exploratory Data Analysis (EDA) is shown in the figure
+            above. The work began with finding, sum of null values for each variable.
+            Null values can mostly impact the outcomes of a data set. In order for us
+            to handle the null values, we started over by replacing the null values with
+            either "Unknown" or the variable that contains the highest frequency or the
+            mean or median of the variable. "Unknown" is known as the global constant
+            in handling missing data. Next is followed by processing the data. Label
+            encoding has been performed in the data set for us to further analyze in
+            the future. The original data set has been copied for us to perform data
+            mining techniques without changing the data set. Lastly we continued to do
+            visualization for our data set before applying any data mining techniques to
+            see if there is any relationship or pattern that can be further analyze using
+            data mining techniques.
+        </p>
+
+    </footer>
+
+    <footer>
+        <h5 class="section-subtitle" style="color:rgb(37, 241, 139)" ;> Missing Values</h5>
+        <p>
+            The method that we have used to solve the missing values are by assuming
+            the NaN value for Occupation is "Unemployed" and the SmokerSatus as
+            "Non-Smoker".
+            <br></br>
+
+            Additionally, we replaced the null(NaN) value by applying value counts
+            function to get the highest frequency of the variable and we replaced to NaN
+            value. For instance, we replaced the NaN value of the variable "HomeAd-
+            dress" to "central mal".
+            <br></br>
+
+            Besides that, if the unique value frequency of the variable does not
+            make a huge differences, then we replace the NaN values to "Unknown". As for the attributes like
+            'Nationality', 'MaritalStatus', and 'Race' we have
+            replaced the NaN value to "Unknown".
+
+        </p>
+    </footer>
+
+    <footer>
+        <h5 class="section-subtitle" style="color:rgb(37, 241, 139)" ;> Feature Engineering</h5>
+        <p>
+            The extra features that we have added in this project is the label encoding
+            method. Label encoding lies under the ordinal encoding where the order of
+            data matters. Each category will be assigned to a value from 1 to N, where
+            N is the number of category in the attribute. The label encoder will be
+            labelled based on the alphabetical order. If there is any 'Unknown' value
+            in the attributes then it will automatically assign it to the value '0'.
+            <br></br>
+
+            Next, We continued with label encoding for other attributes such as
+            `MalaysianPR', `MovingToNewCompany', `LifeStyle', `MaritalStatus', `Lan-
+            guageSpoken', `HighestEducation', `Race', `Nationality', `Telco', `HomeAd-
+            dress' and `Transport' . For example, the attribute `Gender' after label
+            encoding, it will assign female to 0 while male will be assigned to 1. As for
+            attributes that has either `yes' or `no' will be assigned with values, such as
+            `1' and `0'.The attributes `MalaysianPR' and `MovingToNewCompany' has
+            the values `yes' and `no'. Figure below shows the outputs of the attributes after
+            label encoding.
+        </p>
+        <colorcap>
+            <p>
+                <img class="img-fluid" src="/img/posts/insurance/insurance-3.png" , height="100%" , width="800%" ,
+                    alt="Demo Image">
+                <span>After Label Encoding</span>
             </p>
         </colorcap>
 
     </footer>
- 
+
+    <footer>
+        <h2 class="section-heading" style="color:rgb(37, 217, 241)" ;>Feature Selection</h2>
+        <p>
+            From the data set, we performed two feature selection which is BORUTA
+            and Recursive Feature Elimination (RFE). We have included attributes
+            of `Age', `Gender', `NoOfDependent', `FamilyExpenses(Month)', `Annual-
+            Salary', `MedicalComplication', `MaritalStatus' for Unknown, married, and
+            single, `SmokerStatus' for nonsmoker, frequent and once in a while.
+            <br></br>
+
+            The first feature selection that we used is BORUTA. From the given
+            data set, it will be randomised and resulted a shuffled copies of the features.
+            The extended data set will then be trained with a random forest classifier
+            and a feature importance measure. It will be applied to evaluate the im-
+            portance of each feature where it considers more important features if the
+            score is high. This process will repeat to check if a real feature has higher
+            importance than the best and will removes those which are deemed highly
+            unimportant. The algorithm will stop once all of the features get confirmed
+            or rejected or if it has reaches a specified limit of random forest runs. We
+            chose BORUTA as one of the feature selection because it will lead to a mini-
+            mal optimal subset of features as the method minimizes the error of random
+            forest model. BORUTA is also known for it ability to handle interactions
+            between variables. By using BORUTA we are able to see the top features
+            that has the highest.
+            <br></br>
+
+            The next feature selection that we used is the Recursive Feature
+            Elimination (RFE). RFE will fit a model and removes the weakest features
+            until the specified number of features is reached. RFE is known to be used on
+            large feature sets and it does not require any knowledge of the representation
+            of the features. We used RFE on the same dataset that we used on BORUTA
+            because we wanted to see the differences of the both outcomes and see which
+            feature selection shows the best results.
+            <br></br>
+
+            Based on the two feature selection method that we've used, RFE
+            seems to be the optimal method. We will further discuss this in the findings
+            below.
+        </p>
+
+    </footer>
+
+    <footer>
+        <h5 class="section-subtitle" style="color:rgb(37, 241, 139)" ;> Feature Modeling</h5>
+        <p>
+            We handled the imbalanced data by implementing SMOTE to balance
+            the data. The first step we performed, is that we applied label encoding
+            which only contains '0' and '1' indicating as either 'No" and 'Yes", respec-
+            tively on the variable 'Medical Complication".
+            <br></br>
+
+            Moreover, we extracted some of the selected attributes such as 'Smoker-
+            Status', 'Occupation', 'Customer Needs 1", 'Customer Needs 2', 'Purchased-
+            Plan1', 'PurchasedPlan2' that had already applied label encoding in the
+            previous steps.
+            <br></br>
+
+            After extracting all of the needed variables, creating dummy variables
+            were then implemented. 'Medical Complication" was also included as one
+            of the attribute to perform dummy variable technique.
+        </p>
+
+        <colorcap>
+            <p>
+                <img class="img-fluid" src="/img/posts/insurance/insurance-4.png" , height="100%" , width="800%" ,
+                    alt="Demo Image">
+                <span> Output of dummy variables</span>
+            </p>
+        </colorcap>
+        <p>
+            "Medical Complication" is the target variable for SMOTE. Therefore,
+            for the training set and test set of X included all of the dummy variables
+            except for "Medical Complication", however, on the other hand, y only
+            included "Medical Complication". SMOTE is then performed after splitting
+            the training set into 70% and 30% of test set.
+            <br></br>
+
+            After splitting the data, the results shows out that the length of the
+            oversampled data is 420 and 210 are both of the number of no medical
+            complication and having medical complication in oversampled data. The
+            proportion of no medical complication and having medical complication is
+            the same which is 0.5.
+        </p>
+
+        <colorcap>
+            <p>
+                <img class="img-fluid" src="/img/posts/insurance/insurance-5.png" , height="100%" , width="800%" ,
+                    alt="Demo Image">
+                <span>Result of splitting</span>
+            </p>
+        </colorcap>
+
+        <p>The optimization terminated successfully and got the function value of
+            0.646206. Figure below shows the result of Logit.</p>
+
+        <colorcap>
+            <p>
+                <img class="img-fluid" src="/img/posts/insurance/insurance-6.png" , height="100%" , width="800%" ,
+                    alt="Demo Image">
+                <span>Logit Result</span>
+            </p>
+        </colorcap>
+
+    </footer>
+
+    <footer>
+        <h2 class="section-heading" style="color:rgb(37, 217, 241)" ;>Data Mining Techniques</h2>
+        <p>
+            As for the data mining techniques, we have implemented association rule
+            mining (ARM) and for classification models we have used three different
+            machine learning algorithms such as Logistic Regression (LR), Naive Bayes
+            (NB) and k-Nearest Neighbor (kNN) algorithms. Besides that, we have also
+            applied cluster analysis for the insurance data.
+        </p>
+
+        <h5 class="section-subtitle" style="color:rgb(37, 241, 139)" ;>Association Rule Mining</h5>
+        <p>
+            Association rule mining is used to create association rules by search-
+            ing data for frequent if-then patterns by using two dfferent criteria, where
+            support and confidence is used to identify the most common and impor-
+            tant relationships. Confidence indicates the number of times the if-then
+            statements are found true. Next, a method called lift, is used to compare
+            confidence with expected confidence, or how frequently an if-then statement
+            is expected to be found true.
+            <br></br>
+
+            According to our insurance data set, we have constructed association
+            rule mining among selected attributes. The attributes that we have selected
+            for ARM are 'SmokerStatus','LifeStyle', 'Occupation', 'MedicalComplica-
+            tion', 'Customer Needs 1'. The measure of efectiveness on our association
+            rules is to show the correlation among the attributes in the data set because
+            it appears very often but it may occur far less when ARM is applied, de-
+            pending on the support, cofidence and lift values. Using this measures, it
+            helps to separate causation form correlation and allows them to properly
+            value the given value.
+            <br></br>
+
+            Understanding if the lift value is a negative value, then there is a
+            negative correlation between data points. If the value is positive, there is a
+            positive correlation, and if the ratio equals 1, then there is no correlation.
+            Association rules is useful in our project because it helps on analyzing and
+            predicting customer behaviour and they play an important part in customer
+            analytics.
+        </p>
+
+        <h5 class="section-subtitle" style="color:rgb(37, 241, 139)" ;>Classification Models</h5>
+        <p>
+            NB is a probabilistic machine learning algorithm that can be used in a
+            wide variety of classification tasks. That is because there is a significant
+            advantage with NB. Since it is a probabilistic model, the algorithm can
+            be coded up easily and the predictions made real quick.We have developed
+            Naive Bayes (NB) classification model to predict accuracy of the selected at-
+            tributes, with the following set of data,'Occupation','FamilyExpenses(month)',
+            and 'AnnualSalary'.
+            <br></br>
+
+            Initially, we have tested the accuracy of the data set before and after
+            adding the missing values and the accuracy was 31%. After pre-processing,
+            there is changes with the accuracy, where we have divided, the attributes
+            among categories of `Occupation Unemployed', `Occupation employer', `Oc-
+            cupation govServant', `Occupation privateEemployee', `FamilyExpenses(month)',
+            and `AnnualSalary'. The accuracy for occupation as an employer is highest
+            among the rest where it has the value of 93%, secondly, goverment servant
+            (84%), thirdly, unemployed (71%) and private employee with accuracy of
+            (69%).
+            <br></br>
+
+            Secondly, LR is a powerful machine learning algorithm that utilizes a
+            sigmoid function and works best on binary classification problems, although
+            it can be used on multi-class classification problems through the `one vs. all' method. We have
+            implemented a logistic regression model to check for the
+            accuracy and we used occupation as our target variable to train the model.
+            Then, we prepped the data, to feed it into the logistic regression classifier,
+            after creating the train and test model. Later on, an instance of the classifier
+            is created and training data has been fitted into to classifier to check for the
+            accuracy. As for the accuracy, it was similar with the output from NB.
+            <br></br>
+
+            Thirdly, KNN can be used for both classification and regression pre-
+            dictive problems. To evaluate this technique we generally look at 3 im-
+            portant aspects, calculation time, predictive power and ease to interpret
+            output. KNN algorithm fairs across all parameters of considerations. It is
+            commonly used for its easy of interpretation and low calculation time. In
+            order to train the classifier, we set the nearest neighbour value to 5 and then
+            we made the tested the classifier for accuracy. As for the result, KNN's out-
+            put were slightly different from the other two algorithms where the accuracy
+            for each categorical of occupation, were slightly higher for private employee
+            (71%) and employee (93%) with same output. The remaining two outputs
+            had lower accuracy than NB and LG were the unemployed with (63%) and
+            goverment employee with accuracy of (75%).
+        </p>
+
+        <colorcap>
+            <p>
+                <img class="img-fluid" src="/img/posts/insurance/insurance-7.png" , height="100%" , width="800%" ,
+                    alt="Demo Image">
+            </p>
+        </colorcap>
+
+        <h5 class="section-subtitle" style="color:rgb(37, 241, 139)" ;>Cluster Analysis</h5>
+
+        <p>
+            The last data mining technique that we have applied in our project is the
+            elbow method. Elbow method is used to determine the number of clusters
+            in a data set. The score of this method is calculated as the mean squared
+            distance between each instance and the closest centroid to it. The elbow
+            method is known as the most intuitive to understand and the easiest to
+            implement. We applied this method on the attributes of 'MovingToNew-
+            Company" and 'MalaysiaPR" that were label encoded. The result of the
+            cluster analysis using the elbow method will be further discuss in the Find-
+            ings section.
+        </p>
+    </footer>
+
+    <footer>
+        <h2 class="section-heading" style="color:rgb(37, 217, 241)" ;> Findings</h2>
+        <br></br>
+        <h5 class="section-subtitle" style="color:rgb(37, 241, 139)" ;>Exploratory Data Analysis</h5>
+
+        <p>
+            The intention of people buying insurance is to ensure their safety and
+            body health. Nevertheless, people would not always make their life healthier
+            as there was too many temptation of there such as nicotine. Figure below finding
+            below shows that most of the buyers in the data set are smokers.
+        </p>
+
+        <colorcap>
+            <p>
+                <img class="img-fluid" src="/img/posts/insurance/insurance-8.jpg" , height="100%" , width="800%" ,
+                    alt="Demo Image">
+                <span>Frequency of Smoker Status</span>
+            </p>
+        </colorcap>
+        <p>
+            On the other hand, we constructed a bar graph to have a review on
+            the smoker status and the first plan that customers want. From the Figure
+            below, we could see that most of the smokers aiming to purchase 'Personal
+            Medical", which means that this is good for insurance broker and agent as
+            customers have known that instead of 'Personal Retirement" and 'Personal
+            Saving", they needed \Personal Medical" the most as nicotine could higher
+            up the risk of sickness.
+        </p>
+
+        <colorcap>
+            <p>
+                <img class="img-fluid" src="/img/posts/insurance/insurance-9.jpg" , height="100%" , width="800%" ,
+                    alt="Demo Image">
+                <span>Frequency of Smoker Status</span>
+            </p>
+        </colorcap>
+        <p>
+            It is always important to know the policy of customers having on
+            hand currently. Therefore, we construct a graph to study the policy they
+            are having in order to suggest them a better plan. From the Figure below,
+            we could see that "Older Adult" really lacked of investment plan which is the
+            "NoMoneyDown" plan. It is always a benefit to "Older Adult" to purchase
+            "NoMoneyDown" plan as this could be their new interest after they have
+            retired. It is also an advantages for "Teenager" and "Mid Aged Adult" to
+            invest their funds into investment plan because it could gives them and their
+            family members as a side income.
+        </p>
+
+        <colorcap>
+            <p>
+                <img class="img-fluid" src="/img/posts/insurance/insurance-10.jpg" , height="100%" , width="800%" ,
+                    alt="Demo Image">
+                <span>PurchasedPlan2 vs Age Bins</span>
+            </p>
+        </colorcap>
+
+        <p>
+            Moreover, we explored variable "Occupation" and "Customer Needs 1"
+            to have a discover on the needed plan of the customers depends on their oc-
+            cupation. As the Figure 9 shown as below, unemployed customers should
+            focus on "Personal Saving" as they could still have a saving income when-
+            ever they are unemployed. Most importantly from the figure below, rec-
+            ommended that self-employed customers should purchase "Personal Retire-
+            ment" because they do not have Employees Provident Fund (EPF) as their
+            retirement fund.
+        </p>
+
+        <colorcap>
+            <p>
+                <img class="img-fluid" src="/img/posts/insurance/insurance-11.jpg" , height="100%" , width="800%" ,
+                    alt="Demo Image">
+                <span>Occupation vs Customer Needs 1</span>
+            </p>
+        </colorcap>
+
+        <h5 class="section-subtitle" style="color:rgb(37, 241, 139)" ;>Feature Selection</h5>
+        <p>
+            As stated in the feature selection part above, we have performed a feature
+            selection using BORUTA and Recursive Feature Elimintation (RFE). We
+            stated that RFE is the optimal method because based on the Figure 10 and
+            Figure below shows that RFE is effective in selecting features from the trained dataset
+            that are most relevant in predicting the target variable.
+        </p>
+
+        <colorcap>
+            <p>
+                <img class="img-fluid" src="/img/posts/insurance/insurance-12.jpg" , height="100%" , width="800%" ,
+                    alt="Demo Image">
+                <span>BORUTA Top 30 Features</span>
+            </p>
+        </colorcap>
+
+        <colorcap>
+            <p>
+                <img class="img-fluid" src="/img/posts/insurance/insurance-13.jpg" , height="100%" , width="800%" ,
+                    alt="Demo Image">
+                <span>RFE Top 30 Features</span>
+            </p>
+        </colorcap>
+
+        <p>
+            From the Figures above, it shows a different outcome for both feature
+            selection method. For BORUTA, `FamilyExpenses(month)' seems to be at
+            15
+            First while in RFE, `Age' is located in first place. Feature selection is done
+            to tell us features that contribute the most to the prediction variable. As
+            we think about it, `Age' might be one of the features that can contribute
+            the most to the prediction.
+        </p>
