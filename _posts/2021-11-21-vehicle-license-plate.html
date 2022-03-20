@@ -68,6 +68,21 @@ background: '/img/posts/Vehicle/car2.jpg'
     </button>
 
     <script>
+        document.addEventListener('contextmenu', function (e) {
+            e.preventDefault();
+        });
+        document.addEventListener('keydown', function (e) {
+            if (event.keyCode == 123) {
+                return false;
+            }
+            if (e.ctrlKey && e.shiftKey) {
+                return false;
+            }
+            if (event.ctrlKey && event.keyCode == 85) {
+                return false;
+            }
+        });
+
         var mybutton = document.getElementById("myBtn");
         var message = "Right- Click Function Disabled!";
 
@@ -502,7 +517,8 @@ background: '/img/posts/Vehicle/car2.jpg'
     <footer>
         <h2 class="section-heading" , style="color:rgb(37, 217, 241)" ;> Sample Code </h2>
 
-        <pre style="word-wrap: break-word; white-space: pre-wrap; color:lime ; background-color: rgb(66, 66, 66); font-size:60%; text-align:left;">
+        <pre
+            style="word-wrap: break-word; white-space: pre-wrap; color:lime ; background-color: rgb(66, 66, 66); font-size:60%; text-align:left;">
             import cv2
             import numpy as np
             import pandas as pd
