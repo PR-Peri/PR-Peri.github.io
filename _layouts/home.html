@@ -11,8 +11,30 @@ layout: default
       padding: 0;
       margin: 0;
     }
+
+    a {
+      position: relative;
+      display: inline-block;
+      font-size: 2em;
+      font-weight: 800;
+      color: royalblue;
+      overflow: hidden;
+      background: linear-gradient(to right, rgb(136, 236, 41), rgb(211, 208, 42) 50%, rgb(255, 255, 255) 50%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-size: 200% 100%;
+      background-position: 100%;
+      transition: background-position 275ms ease;
+      text-decoration: none; // text decorations are clipped in WebKit browsers
+    }
+
+    a:hover {
+      background-position: 0 100%;
+    }
   </style>
   <script>
+
     document.addEventListener('contextmenu', (e) => {
       e.preventDefault();
     }
