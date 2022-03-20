@@ -1,0 +1,384 @@
+---
+layout: post
+title: "Employee Training Management System"
+subtitle: "Software Engineering Project"
+date: 2020-02-05 10:45:13 -0400
+background: '/img/posts/soft/soft-bg.png'
+---
+
+<body>
+    <style>
+        body {
+            background-image: url('http://i.stack.imgur.com/kx8MT.gif');
+            background-size: cover;
+            height: 100vh;
+            padding: 0;
+            margin: 0;
+        }
+
+        footer {
+            text-align: justify;
+            padding: 3px;
+            background-color: rgb(0, 0, 0);
+            color: white;
+            font-size: 80%
+        }
+
+        footer2 {
+            text-align: justify;
+            padding: 3px;
+            background-color: rgb(0, 0, 0);
+            color: goldenrod;
+            font-size: 80%
+        }
+
+        code {
+            font-family: monospace;
+            color: crimson;
+            background-color: #f1f1f1;
+            padding: 20px;
+            font-size: 105%;
+            display: block;
+            font-family: monospace;
+            white-space: pre;
+        }
+
+        pre {
+            width: 250px;
+            overflow: auto"
+
+        }
+
+        colorcap {
+            color: gold;
+            background-color: rgb(0, 0, 0);
+            font-size: 100%;
+            text-align: center
+        }
+
+        #myBtn {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 30px;
+            z-index: 99;
+            font-size: 15px;
+            border: none;
+            outline: none;
+            background-color: rgb(238, 208, 37);
+            color: white;
+            cursor: pointer;
+            padding: 10px;
+            border-radius: 4px;
+        }
+
+        #myBtn:hover {
+            background-color: #555;
+        }
+    </style>
+
+    <button onclick="topFunction()" id="myBtn" title="Back to top">
+        <img class="img-fluid" src="/img/posts/arrow.jpg" height="30" width="30">
+    </button>
+
+
+    <script>
+        document.addEventListener('contextmenu', (e) => {
+            e.preventDefault();
+        }
+        );
+        document.onkeydown = function (e) {
+            if (event.keyCode == 123) {
+                return false;
+            }
+            if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) {
+                return false;
+            }
+            if (e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) {
+                return false;
+            }
+            if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) {
+                return false;
+            }
+            if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) {
+                return false;
+            }
+        }
+
+        var mybutton = document.getElementById("myBtn");
+        var message = "Right- Click Function Disabled!";
+
+
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function () { scrollFunction() };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                mybutton.style.display = "block";
+            } else {
+                mybutton.style.display = "none";
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+
+        function disableselect(e) {
+            return false
+        }
+
+        function reEnable() {
+            return true
+        }
+
+        //if IE4+  
+        document.onselectstart = new Function("return false")
+        document.oncontextmenu = new Function("return false")
+        document.oncontextmenu = new Function("alert(message);return false")
+
+        //if NS6  
+        if (window.sidebar) {
+            document.onmousedown = disableselect
+            document.onclick = reEnable
+
+        }
+    </script>
+
+    <footer>
+        <h2 class="section-heading" style="color:rgb(37, 217, 241)" ;> Introduction</h2>
+        <p>Training is one of the most important parts of an organization’s overall Strategy. Before starting a
+            particular venture or considering a potential acquisition, the first question arises that, whether there are
+            required skills present in the organization or not. Typically all key skills required for efficient
+            management of a company must be available in a company; however other non-core activities can be outsourced.
+            The need for training arises due to advancement in technology, need for improving performance or as part of
+            professional development.
+            <br></br>
+
+            Benefits of training are intangible and investing in training benefits both the organization and employees
+            for a long period. Training enhances a worker level of skills. It provides a sense of satisfaction, which is
+            an intrinsic motivator. Training also provides organization multi-skilled employees. Training increases an
+            employer commitment to their job and their organization. A better understanding of jobs reduces accidents.
+            <br></br>
+
+            Training a teacher prepares them to carry out their humble educational activities effectively, and to
+            achieve such an event depends on the ability of the teacher to give, and create and interact, and mastering
+            sciences and the application of the different methods of teaching according to each learning situation, and
+            it happens when the teacher manages their class firmly and successfully, and this management relies also on
+            the teacher's personality and the style in dealing with students inside and outside the classroom. Real
+            educational reform must be based on the teacher’s training.
+
+        </p>
+    </footer>
+    <footer>
+        <h2 class="section-heading" style="color:rgb(37, 217, 241)" ;> Problem Statement</h2>
+        <p> 1) Principal faces a challenge where he/she does not know, what kind of training the teachers underwent.
+        <ul>
+            <li>
+                He/she had trouble finding for the records.
+            </li>
+        </ul>
+        </p>
+        <p>
+            2) Secretary faces a problem where he/she could not filter out the training that the teachers went
+            through
+            previously.
+        <ul>
+            <li>
+                Secretary had issues on selecting candidates, that needs to be a part of the future training.
+            </li>
+        </ul>
+        </p>
+        <p>
+            3) As for the treasurer, he/she faces a huge problem with allocating money for each training.
+        <ul>
+            <li>
+                Since the secretary could not decide, the number of candidates that would take part in the training,
+                treasurer faces difficulties to finalize the total cost that will be needed.
+            </li>
+        </ul>
+        </p>
+    </footer>
+
+
+    <footer>
+        <h2 class="section-heading" style="color:rgb(37, 217, 241)" ;> User Story</h2>
+        <p> 1) Principal
+        <ul>
+            <li>
+                As a principal, I want to have a record of the type of training each teacher underwent and wants to go
+                through. I need to make sure that the teachers will undergo sufficient training that is necessary for
+                them to perform their tasks.
+            </li>
+            <li>
+                Benefits :
+                By doing so, I will designate proper training that the teachers could use to enhance their skills by
+                performing their tasks at school.
+            </li>
+        </ul>
+        </p>
+        <p>
+            2) Secretary
+        <ul>
+            <li>
+                As a secretary, I feel that some of the training description are not accurate in terms of information
+                and training plan. As for this problem, it is very difficult for me to make a decision or have a brief
+                idea on the trainings.
+            </li>
+            <li> Before, selecting the candidates, I need to be able to provide a summary or main idea, due to improper
+                information, I am having a tough time choosing training, based on the candidates requirements.
+            </li>
+            <li>
+                Benefits :
+                I need a system that will help me to prepare myself and the teachers by giving us a summary of what we
+                will be learning in order to understand the whole course we will be attending.
+            </li>
+        </ul>
+        </p>
+
+        <p>
+            3) Treasurer
+        <ul>
+            <li>
+                As a treasurer, my role is to stay updated with the school/university financial system. I have problems
+                with the statements due to improper records or missing data from the files.
+            </li>
+            <li> Besides that, I could not analyse, if the money needed for the upcoming training would be affordable
+                for the management.Not only that, I could not decide if the candidates are still allowed to go through
+                the training if there are problems with the money allocation.
+            </li>
+            <li>Based on this situation, I would suggest the higher education authority to introduce a highly compatible
+                software, so that it would be easier to interpret
+            </li>
+            <li>
+                Benefits :
+                With a better software, it would make our works to be carried out in a simpler method and in a faster
+                time.
+            </li>
+        </ul>
+        </p>
+    </footer>
+
+    <footer>
+        <h2 class="section-heading" style="color:rgb(37, 217, 241)" ;> Scope</h2>
+        <p>
+            Project scope is the first step in setting project goals and objectives. It also allows the team to assign
+            resources and forming a reasonable project timeline. For the scope of the software, we decided to list out a
+            few key points such as the programming language, user interface design and function of the systems.
+            <br></br>
+
+            We found out that picking the right programming language is important in developing software. We had to make
+            sure that every team member is familiar with the language chosen to allow a smooth process in developing
+            said software. After much discussion, the team decided to use the programming language C++ for the software.
+            <br></br>
+
+            The cross-platform C++ will be used. The team discovered that it is the best option to choose from to
+            develop the software. The team also found that the benefits of using this platform outweigh the liabilities.
+            <br></br>
+
+            Employee Training Management system in this project is a standalone system, the team found out that any
+            computer that could install the program can use this hardware. The software can run at any operating system
+            and it does not require any other special software
+            <br></br>
+
+            The time allocated to finish up this program is 13 weeks including project meetings, consultation hours and
+            implementation and testing of the test product.
+        </p>
+    </footer>
+
+    <footer>
+        <h2 class="section-heading" style="color:rgb(37, 217, 241)" ;> Objectives</h2>
+        <p>
+            The objective is to create a program has the main menu for the admin that would allow admin to manage
+            employee’s records, such as add employee record, view employee record, search employee record, edit employee
+            record and delete employee record. Furthermore, the admin could also click on training status from the main
+            menu to whether approve or reject the employee who applied for training. On the other hand, the program has
+            the main menu for an employee that would allow an employee to manage their training status which includes
+            training application, edit training application and training cancellation. Additionally, an employee could
+            also view their profile under his/her main menu.
+        </p>
+
+        <p> 1) Self Service
+        <ul>
+            <li>
+                The program needs to be manually controlled by the admin and the employee.
+            </li>
+        </ul>
+        </p>
+
+        <p> 2) Managing Employee
+        <ul>
+            <li>
+                Admin can add an employee record.
+            </li>
+            <li>
+                Admin can edit an employee record.
+            </li>
+            <li>
+                Admin can delete an employee record.
+            </li>
+            <li>
+                Admin can view an employee record.
+            </li>
+            <li>
+                Admin can search an employee record.
+            </li>
+        </ul>
+        </p>
+
+        <p> 3) Managing Training Status
+        <ul>
+            <li>
+                Admin can approve or reject a training.
+            </li>
+            <li>
+                An employee can apply for a training.
+            </li>
+            <li>
+                An employee can edit his/her training application.
+            </li>
+            <li>
+                An employee can cancel his/her training application.
+            </li>
+        </ul>
+        </p>
+
+        <p> 4) View Profile
+        <ul>
+            <li>
+                An employee can view their own profile.
+            </li>
+        </ul>
+        </p>
+
+        <p> 5) User-Friendly
+        <ul>
+            <li>
+                The UI is in a readable background colour.
+            </li>
+        </ul>
+        </p>
+    </footer>
+
+
+    <footer>
+        <h2 class="section-heading" style="color:rgb(37, 217, 241)" ;> Target Audience</h2>
+        <p>
+            1) System Admin
+        <ul>
+            <li>
+                Update and maintain the system for any problems/bugs.
+            </li>
+        </ul>
+        </p>
+
+        <p>
+            2) Employee and Admin
+        <ul>
+            <li>
+                The main users of this program who will be using this system indefinitely.
+            </li>
+        </ul>
+        </p>
