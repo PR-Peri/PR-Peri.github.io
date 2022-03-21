@@ -423,11 +423,194 @@ background: '/img/posts/soft/soft-bg.png'
     </footer>
 
     <footer>
-        <h2 class="section-heading" style="color:rgb(37, 217, 241)" ;> Use Case Diagram</h2>
+        <h2 class="section-heading" style="color:rgb(37, 217, 241)" ;> Flowchart</h2>
+        <p> ADMIN : </p>
         <colorcap>
             <p>
-                <img class="img-fluid" src="/img/posts/soft/soft-2.jpg" , height="100%" , width="800%" ,
+                <img class="img-fluid" src="/img/posts/soft/soft-3.jpg" , height="100%" , width="800%" ,
+                    alt="Demo Image">
+                <span>Admin Login.</span>
+            </p>
+        </colorcap>
+
+        <colorcap>
+            <p>
+                <img class="img-fluid" src="/img/posts/soft/soft-4.jpg" , height="100%" , width="800%" ,
+                    alt="Demo Image">
+                <span>Updating Employee Profile.</span>
+            </p>
+        </colorcap>
+
+        <colorcap>
+            <p>
+                <img class="img-fluid" src="/img/posts/soft/soft-5.jpg" , height="100%" , width="800%" ,
+                    alt="Demo Image">
+                <span>Adding Training Records.</span>
+            </p>
+        </colorcap>
+
+        <colorcap>
+            <p>
+                <img class="img-fluid" src="/img/posts/soft/soft-6.jpg" , height="100%" , width="800%" ,
+                    alt="Demo Image">
+                <span>Training Approval.</span>
+            </p>
+        </colorcap>
+
+
+    </footer>
+
+    <footer>
+        <h2 class="section-heading" style="color:rgb(37, 217, 241)" ;> Use Case Flowchart</h2>
+        <p> USER : </p>
+        <colorcap>
+            <p>
+                <img class="img-fluid" src="/img/posts/soft/soft-7.jpg" , height="100%" , width="800%" ,
+                    alt="Demo Image">
+                <span>Employee Login.</span>
+            </p>
+        </colorcap>
+
+        <colorcap>
+            <p>
+                <img class="img-fluid" src="/img/posts/soft/soft-8.jpg" , height="100%" , width="800%" ,
+                    alt="Demo Image">
+                <span>Apply Training.</span>
+            </p>
+        </colorcap>
+
+        <colorcap>
+            <p>
+                <img class="img-fluid" src="/img/posts/soft/soft-9.jpg" , height="100%" , width="800%" ,
+                    alt="Demo Image">
+                <span>View Training Profile.</span>
+            </p>
+        </colorcap>
+
+        <colorcap>
+            <p>
+                <img class="img-fluid" src="/img/posts/soft/soft-10.jpg" , height="100%" , width="800%" ,
+                    alt="Demo Image">
+                <span>View Employee Profile.</span>
+            </p>
+        </colorcap>
+
+    </footer>
+
+    <footer>
+        <h2 class="section-heading" style="color:rgb(37, 217, 241)" ; style=line-height:2.0;> Business Rules</h2>
+        <p>
+        <ol>
+            <li>
+                An ADMIN can allocate one or many TRAINING. Each TRAINING can be allocated by only one ADMIN.
+            </li>
+            <li>
+                A one-to-one (1: M) relationship exists between ADMIN and TRAINING.
+            </li>
+            <li>
+                ADMIN is mandatory to TRAINING in the “allocation” relationship.
+            </li>
+            <li>
+                Each EMPLOYEE may request for zero to one TRAINING. Each TRAINING may be requested by an EMPLOYEE
+            </li>
+            <li>
+                A one-to-one (1: 1) relationship exists between EMPLOYEE and TRAINING
+            </li>
+            <li>
+                USER is optional to TRAINING in the “request” relationship.
+            </li>
+            <li>
+                An ADMIN can manage many EMPLOYEES. Each EMPLOYEE can be managed by only one ADMIN.
+            </li>
+            <li>
+                A one-to-many (1: M) relationship exists between ADMIN and EMPLOYEE.
+            </li>
+            <li>
+                ADMIN is optional to EMPLOYEE in the “manage” relationship.
+            </li>
+        </ol>
+        </p>
+    </footer>
+
+    <footer>
+        <h2 class="section-heading" style="color:rgb(37, 217, 241)" ; style=line-height:2.0;> Conceptual ERD</h2>
+        <colorcap>
+            <p>
+                <img class="img-fluid" src="/img/posts/soft/soft-11.jpg" , height="100%" , width="800%" ,
                     alt="Demo Image">
             </p>
         </colorcap>
-    </footer>
+
+        <h2 class="section-heading" style="color:rgb(37, 217, 241)" ; style=line-height:2.0;> Class Diagram</h2>
+        <colorcap>
+            <p>
+                <img class="img-fluid" src="/img/posts/soft/soft-12.png" , height="100%" , width="800%" ,
+                    alt="Demo Image">
+            </p>
+        </colorcap>
+
+        <h2 class="section-heading" style="color:rgb(37, 217, 241)" ; style=line-height:2.0;> Sequence Diagram</h2>
+        <p>ADMIN :</p>
+        <colorcap>
+            <p>
+                <img class="img-fluid" src="/img/posts/soft/soft-13.jpg" , height="100%" , width="800%" ,
+                    alt="Demo Image">
+                <span> Admin Login </span>
+            </p>
+        </colorcap>
+
+        <colorcap>
+            <p>
+                <img class="img-fluid" src="/img/posts/soft/soft-14.jpg" , height="100%" , width="800%" ,
+                    alt="Demo Image">
+                <span> Training Records </span>
+            </p>
+        </colorcap>
+
+        <colorcap>
+            <p>
+                <img class="img-fluid" src="/img/posts/soft/soft-15.jpg" , height="100%" , width="800%" ,
+                    alt="Demo Image">
+                <span> Training Approval </span>
+            </p>
+        </colorcap>
+        <colorcap>
+            <p>
+                <img class="img-fluid" src="/img/posts/soft/soft-16.jpeg" , height="100%" , width="800%" ,
+                    alt="Demo Image">
+                <span> Adding Training </span>
+            </p>
+        </colorcap>
+
+        <p>USER :</p>
+        <colorcap>
+            <p>
+                <img class="img-fluid" src="/img/posts/soft/soft-17.jpg" , height="100%" , width="800%" ,
+                    alt="Demo Image">
+                <span> Login System </span>
+            </p>
+        </colorcap>
+
+        <colorcap>
+            <p>
+                <img class="img-fluid" src="/img/posts/soft/soft-18.jpeg" , height="100%" , width="800%" ,
+                    alt="Demo Image">
+                <span>Viewing Training Event </span>
+            </p>
+        </colorcap>
+
+        <colorcap>
+            <p>
+                <img class="img-fluid" src="/img/posts/soft/soft-19.jpg" , height="100%" , width="800%" ,
+                    alt="Demo Image">
+                <span>Training Application</span>
+            </p>
+        </colorcap>
+
+        <colorcap>
+            <p>
+                <img class="img-fluid" src="/img/posts/soft/soft-20.jpg" , height="100%" , width="800%" ,
+                    alt="Demo Image">
+                <span>Viewing Profile</span>
+            </p>
+        </colorcap>
