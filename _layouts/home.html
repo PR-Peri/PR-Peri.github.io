@@ -32,10 +32,24 @@ layout: default
       -webkit-transition: background-position 0.5s ease-in-out;
       -moz-transition: background-position 0.5s ease-in-out;
       -o-transition: background-position 0.5s ease-in-out;
+      -ms-transition:background-position 0.5s ease-in-out;
       transition: background-position 0.5s ease-in-out;
 
       text-decoration: none;
     }
+
+    img.ui-li-thumb {
+      position: absolute;
+      left: 1px;
+      top: 50%;
+  
+      -ms-transform: translateY(-50%);
+      -webkit-transform: translateY(-50%);
+      -moz-transform: translateY(-50%);
+      -o-transform: translateY(-50%);
+      transform: translateY(-50%);
+  }
+
 
     a:hover {
       background-position: 0 100%;
