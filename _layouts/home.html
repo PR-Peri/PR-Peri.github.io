@@ -7,7 +7,7 @@ layout: default
     html {
       overflow-x: hidden;
     }
-
+    
     body {
       background-image: url('http://i.stack.imgur.com/kx8MT.gif');
       background-size: cover;
@@ -29,10 +29,7 @@ layout: default
       -webkit-text-fill-color: transparent;
       background-size: 200% 100%;
       background-position: 100%;
-      -webkit-transition: top 0.3s ease, opacity 0.3s ease;
-      -moz-transition: top 0.3s ease, opacity 0.3s ease;
-      -ms-transition: top 0.3s ease, opacity 0.3s ease;
-      transition: top 0.3s ease, opacity 0.3s ease;
+      transition: background-position 400ms ease;
       text-decoration: none;
     }
 
@@ -41,10 +38,11 @@ layout: default
     }
 
     @media all and (max-width: 658px) {
-      .content {
-        margin-left: -150px;
-      }
-    }
+      .content { margin-left: -150px; }
+  }
+
+  
+  
   </style>
   <script>
 
