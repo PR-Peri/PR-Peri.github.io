@@ -4,6 +4,10 @@ layout: default
 
 <body>
   <style>
+    html {
+      overflow-x: hidden;
+    }
+
     body {
       background-image: url('http://i.stack.imgur.com/kx8MT.gif');
       background-size: cover;
@@ -29,6 +33,12 @@ layout: default
       text-decoration: none;
     }
 
+    element:hover, element:active {
+      -webkit-tap-highlight-color:rgb(167, 212, 94);
+      -webkit-user-select: none;
+      -webkit-touch-callout: none;
+      }
+
     @media (hover: none) {
       a:hover {
         background-position: 0 100%;
@@ -44,17 +54,16 @@ layout: default
         cursor: pointer;
       }
     }
-
-    @media (hover: active) {
-      a:hover {
-        background-position: 0 100%;
-        -webkit-tap-highlight-color: rgb(167, 212, 94);
-        cursor: pointer;
+    
+    @media all and (max-width: 658px) {
+      .content {
+        margin-left: -150px;
       }
     }
   </style>
-
+  
   <script>
+    document.addEventListener("touchstart", function(){}, true);
 
     document.addEventListener('contextmenu', (e) => {
       e.preventDefault();
