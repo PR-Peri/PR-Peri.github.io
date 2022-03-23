@@ -33,12 +33,6 @@ layout: default
       text-decoration: none;
     }
 
-    element:hover, element:active {
-      -webkit-tap-highlight-color:rgb(167, 212, 94);
-      -webkit-user-select: none;
-      -webkit-touch-callout: none;
-      }
-
     @media (hover: none) {
       a:hover {
         background-position: 0 100%;
@@ -55,6 +49,7 @@ layout: default
       }
     }
     
+
     @media all and (max-width: 658px) {
       .content {
         margin-left: -150px;
@@ -63,7 +58,6 @@ layout: default
   </style>
   
   <script>
-    document.addEventListener("touchstart", function(){}, true);
 
     document.addEventListener('contextmenu', (e) => {
       e.preventDefault();
