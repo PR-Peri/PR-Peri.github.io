@@ -4,10 +4,6 @@ layout: default
 
 <body>
   <style>
-    html {
-      overflow-x: hidden;
-    }
-
     body {
       background-image: url('http://i.stack.imgur.com/kx8MT.gif');
       background-size: cover;
@@ -36,17 +32,15 @@ layout: default
     a:hover {
       background-position: 0 100%;
       -webkit-tap-highlight-color: rgb(167, 212, 94);
+      cursor: pointer;
     }
 
     a:active {
       background-position: 0 100%;
-
     }
 
-    .disable-hover {
-      pointer-events: none;
-    }
-    
+
+
 
     @media all and (max-width: 658px) {
       .content {
@@ -54,7 +48,7 @@ layout: default
       }
     }
   </style>
-  
+
   <script>
 
     document.addEventListener('contextmenu', (e) => {
@@ -134,7 +128,7 @@ layout: default
       <div class="container">
         <div class="row">
           <div class="col-lg-8 col-md-10 mx-auto">
-            <div class="page-heading">
+            <div class="page-heading", onclick="">
               <h1>{{ site.title }}</h1>
               {% if site.description %}
               <span class="subheading">{{ site.description }}</span>
