@@ -39,14 +39,17 @@ layout: default
       background-position: 0 100%;
     }
 
-
-
-
-    @media all and (max-width: 658px) {
+    @media not all and (hover: none) {
       .content {
         margin-left: -150px;
       }
-    }
+
+
+      @media all and (max-width: 658px) {
+        .content {
+          margin-left: -150px;
+        }
+      }
   </style>
 
   <script>
@@ -128,7 +131,7 @@ layout: default
       <div class="container">
         <div class="row">
           <div class="col-lg-8 col-md-10 mx-auto">
-            <div class="page-heading", onclick="">
+            <div class="page-heading" , onclick="">
               <h1>{{ site.title }}</h1>
               {% if site.description %}
               <span class="subheading">{{ site.description }}</span>
