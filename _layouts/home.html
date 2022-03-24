@@ -16,6 +16,26 @@ layout: default
       margin: 0;
     }
 
+    #myBtn {
+      display: none;
+      position: fixed;
+      bottom: 20px;
+      right: 30px;
+      z-index: 99;
+      font-size: 15px;
+      border: none;
+      outline: none;
+      background-color: rgb(238, 208, 37);
+      color: white;
+      cursor: pointer;
+      padding: 10px;
+      border-radius: 4px;
+    }
+
+    #myBtn:hover {
+      background-color: #555;
+    }
+
     a {
       position: relative;
       display: inline-block;
@@ -48,7 +68,7 @@ layout: default
         cursor: pointer;
       }
     }
-    
+
 
     @media all and (max-width: 658px) {
       .content {
@@ -56,7 +76,12 @@ layout: default
       }
     }
   </style>
-  
+
+
+  <button onclick="topFunction()" id="myBtn" title="Back to top">
+    <img class="img-fluid" src="/img/posts/arrow.jpg" height="30" width="30">
+  </button>
+
   <script>
 
     document.addEventListener('contextmenu', (e) => {
