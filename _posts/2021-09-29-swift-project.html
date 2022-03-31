@@ -75,6 +75,35 @@ background: '/img/posts/swift/ios1.jpg'
         #myBtn:hover {
             background-color: #555;
         }
+
+        a {
+            position: relative;
+            display: inline-block;
+            font-size: 2em;
+            font-weight: 800;
+            color: royalblue;
+            overflow: hidden;
+            background: linear-gradient(to right, rgb(136, 236, 41), rgb(211, 208, 42) 50%, rgb(255, 255, 255) 50%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            -moz-background-clip: text;
+            -moz-text-fill-color: transparent;
+            background-size: 200% 100%;
+            background-position: 100%;
+            transition: background-position 400ms ease-in-out;
+            -webkit-transition: background-position .4s ease-in-out;
+            -moz-transition: background-position .4s ease-in-out;
+            text-decoration: none;
+        }
+
+        a:hover,
+        a:active {
+            background-position: 0 100%;
+            -webkit-tap-highlight-color: rgb(167, 212, 94);
+            -moz-tap-highlight-color: rgb(167, 212, 94);
+        }
+        
     </style>
 
     <button onclick="topFunction()" id="myBtn" title="Back to top">
