@@ -1,9 +1,9 @@
 ---
 layout: post
-title: "[Web In Progress] Customer Sentiment Analysis based on Gadget Brands "
-subtitle: "Social Media Analytics"
-date: 2021-03-12 10:45:13 -0400
-background: '/img/posts/smc/smc.jpg'
+title: "[Web In Progress] Coach Management And Booking System "
+subtitle: "Database Fundamentals"
+date: 2019-08-13 10:45:13 -0400
+background: '/img/posts/dbs/04.jpg'
 ---
 
 <body>
@@ -75,6 +75,7 @@ background: '/img/posts/smc/smc.jpg'
         #myBtn:hover {
             background-color: #555;
         }
+        
     </style>
 
     <button onclick="topFunction()" id="myBtn" title="Back to top">
@@ -148,32 +149,45 @@ background: '/img/posts/smc/smc.jpg'
     </script>
 
     <footer>
-        <h2 class="section-heading" style="color:rgb(37, 217, 241)" ;> Overview</h2>
-        <p>For this Project, we have used Twitter Developer account (Api Keys) to extract the data for the following
-            brands:
-        <ul>
-            <li>Apple Support</li>
-            <li>Samsung </li>
-            <li>Motorola</li>
-            <li>Xiaomi</li>
-        </ul>
-        </p>
-    </footer>
-
-    <footer>
-        <h2 class="section-heading" style="color:rgb(37, 217, 241)" ;> Objectives</h2>
+        <h2 class="section-heading" style="color:rgb(37, 217, 241)" ;> Business Rules
+        </h2>
         <p>
-        <ul>
-            <li>Identify the kind of social media campaign that is suitable for a given domain (including best
-                platforms, strategies that work for the different business functions in the business etc.) </li>
-
-            <li>Identify five metrics to monitor across all the brands.</li>
-
-            <li>Analyzethe current social media channel that the company is currently implementing as part of their
-                marketing campaign. </li>
-
-            <li>Determining which brand amongst the selected ones succeeds in using their social media channel and
-                justify based on their performance in the metrics measured.</li>
-        </ul>
+        <ol>
+            <li>
+                Each PASSENGER can purchase many TICKET. Each TICKET is purchased by a PASSENGER.
+            </li>
+            <li>
+                A SEAT is allocated to one TICKET. Each TICKET is allocated to a SEAT.
+            </li>
+            <li>
+                A DRIVER can drive to many DESTINATION. Each DESTINATION is driven by a DRIVER.
+            </li>
+            <li>
+                A TICKET is used for a DESTINATION, Each DESTINATION uses TICKET.
+            </li>
+            <li>
+                A SEAT_ TYPE can be either PLAT_SEAT or REG_SEAT. Each SEAT_TYPE is categorized by two different
+                types of seat.
+            </li>
+        </ol>
         </p>
+
+        <h2 class="section-heading" style="color:rgb(37, 217, 241)" ;> Entity Relationship Diagram
+        </h2>
+        <colorcap>
+            <p>
+                <img class="img-fluid" src="/img/posts/dbs/dbs-1.png" , height="100%" , width="800%" ,
+                    alt="Demo Image">
+            </p>
+        </colorcap>
+
+        
+        <h2 class="section-heading" style="color:rgb(37, 217, 241)" ;> Data Dictionary
+        </h2>
+        <colorcap>
+            <p>
+                <img class="img-fluid" src="/img/posts/dbs/dbs-2.jpg" , height="100%" , width="800%" ,
+                    alt="Demo Image">
+            </p>
+        </colorcap>
     </footer>
